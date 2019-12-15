@@ -147,49 +147,49 @@ app.on('ready', async () => {
 
   ipcMain.on('DO_LOGIN', (event, teacher) => {
     // do something
-    console.log(teacher);
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
     db.teacher
       .findOne({ where: { username: teacher.username } })
       .then(entry => {
-        console.log(entry);
+        // console.log(entry);
         // entry will be the first entry of the teacher table with the username 'userame' || null
         // eslint-disable-next-line promise/always-return
         if (!entry) {
-          return event.sender.send('LOGIN_FAILED', {
+          return event.sender.send('LOGIN_COMPLETE', {
             text: 'failed',
             message: "user doesn't exist"
           });
         }
-
-        bcrypt.compare(teacher.password, entry.password, (err, data) => {
-          if (err) throw err;
-
-          // if both match than you can do anything
-          if (data) {
-            console.log(data);
-            return event.sender.send('LOGIN_SUCCESS', {
-              text: 'success',
-              message: 'Login successful'
-            });
-          } else {
-            return event.sender.send('LOGIN_FAILED', {
-              text: 'failed',
-              message: 'Invalid Credentials'
-            });
-          }
-        });
+        bcrypt
+          .compare(teacher.password, entry.dataValues.password)
+          .then(result => {
+            if (result) {
+              console.log('authentication successful');
+              console.log('show data');
+              console.log(result);
+              cookies.setCookie(currentSession);
+              return event.sender.send('LOGIN_COMPLETE', {
+                text: 'success',
+                message: 'Login successful',
+                username: result.username
+              });
+            } else {
+              console.log("authentication failed. Password doesn't match");
+              return event.sender.send('LOGIN_COMPLETE', {
+                text: 'failed',
+                message: 'Invalid Credentials'
+              });
+            }
+          })
+          .catch(err => console.error(err));
       })
       // eslint-disable-next-line no-shadow,promise/always-return
-      .then(() => {
-        cookies.setCookie(currentSession);
-      })
       .catch(error => {
         console.log(error);
         event.sender.send('LOGIN_FAILED', {
           text: 'failed',
-          message: 'Login failed',
+          message: 'user does not exist',
           error
         });
       });

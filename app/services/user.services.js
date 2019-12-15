@@ -14,42 +14,24 @@ export const userService = {
 };
 
 function login(username, password) {
-  /* const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
-  };
-
-  return fetch(`/users/authenticate`, requestOptions)
-    .then(handleResponse)
-    .then(user => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('user', JSON.stringify(user));
-
-      return user;
-    }); */
-
   const teacher = {
     username,
     password
   };
 
-  return new Promise(resolve => {
-    console.log(teacher);
+  return new Promise((resolve, reject) => {
     // will send the teacher object here.
     ipc.send('DO_LOGIN', teacher);
     // once I get the information back, pass this to actions so that
     // my store updates with the information
     // TODO: add the promise to handleresponse() function
-    ipc.on('LOGIN_SUCCESS', (event, result) => {
-      console.log(result);
-      resolve(result);
-    });
-  }).catch(err => {
-    console.log('error happened');
-    console.log(err);
-    ipc.on('LOGIN_FAILED', (event, reason) => {
-      console.log(reason);
+    ipc.on('LOGIN_COMPLETE', (event, result) => {
+      if (result.text !== 'success') {
+        // eslint-disable-next-line no-shadow
+        const error = result.message;
+        return reject(error);
+      }
+      return resolve(result);
     });
   });
 }
