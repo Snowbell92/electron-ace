@@ -114,8 +114,6 @@ app.on('ready', async () => {
   new AppUpdater();
 
   ipcMain.on('DO_REGISTER', (event, user) => {
-    // do something
-    console.log(user);
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
     db.teacher
@@ -128,9 +126,6 @@ app.on('ready', async () => {
       })
       // eslint-disable-next-line no-shadow,promise/always-return
       .then(([user, created]) => {
-        console.log(user.get({ plain: true }));
-        console.log('created');
-        console.log(created);
         event.sender.send('REGISTER_COMPLETE', {
           text: 'success',
           userId: user.id
@@ -138,7 +133,7 @@ app.on('ready', async () => {
       })
       .catch(error => {
         console.log(error);
-        event.sender.send('REGISTER_FAILED', {
+        return event.sender.send('REGISTER_COMPLETE', {
           text: 'failed',
           message: 'Registration failed'
         });

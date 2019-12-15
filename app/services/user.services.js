@@ -24,7 +24,6 @@ function login(username, password) {
     ipc.send('DO_LOGIN', teacher);
     // once I get the information back, pass this to actions so that
     // my store updates with the information
-    // TODO: add the promise to handleresponse() function
     ipc.on('LOGIN_COMPLETE', (event, result) => {
       if (result.text !== 'success') {
         // eslint-disable-next-line no-shadow
@@ -60,18 +59,20 @@ function getById(id) {
 }
 
 function register(user) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     // will send the user object here.
     ipc.send('DO_REGISTER', user);
     // once I get the information back, pass this to actions so that
     // my store updates with the information
-    // TODO: add the promise to handleresponse() function
     ipc.on('REGISTER_COMPLETE', (event, result) => {
-      resolve(result);
-    });
-  }).catch(err => {
-    console.log('error happened');
-    console.log(err);
+      console.log(result);
+      if (result.text !== 'success') {
+        // eslint-disable-next-line no-shadow
+        const error = result.message;
+        return reject(error);
+      }
+      return resolve(result);
+    })
   });
 }
 
