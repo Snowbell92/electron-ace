@@ -1,5 +1,3 @@
-import { error } from 'electron-log';
-
 const ipc = require('electron').ipcRenderer;
 
 // eslint-disable-next-line import/prefer-default-export
@@ -32,6 +30,12 @@ function login(username, password) {
       }
       return resolve(result);
     });
+    // eslint-disable-next-line promise/always-return
+  }).then(user => {
+    // eslint-disable-next-line no-shadow
+    const teacher = user.user;
+    localStorage.setItem('user', JSON.stringify(teacher));
+    return teacher;
   });
 }
 

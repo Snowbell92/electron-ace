@@ -1,16 +1,5 @@
 const bcrypt = require('bcrypt');
 
-// eslint-disable-next-line no-unused-vars
-async function hashPassword(teacher, options) {
-  if (!teacher.changed('password')) {
-    return 0;
-  }
-  const SALT_FACTOR = 8;
-  // eslint-disable-next-line no-param-reassign
-  teacher.password = await bcrypt.hash(teacher.password, SALT_FACTOR);
-  console.log(teacher);
-}
-
 module.exports = (sequelize, DataTypes) => {
   const Teacher = sequelize.define(
     'Teacher',
@@ -28,23 +17,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       hooks: {
-        beforeSave: hashPassword,
-        beforeCreate: hashPassword
+        beforeSave: async function(teacher) {
+          const salt = await bcrypt.genSalt(10); //whatever number you want
+          // eslint-disable-next-line no-param-reassign
+          teacher.password = await bcrypt.hash(teacher.password, salt);
+        }
       }
     }
   );
   // eslint-disable-next-line func-names
-  Teacher.prototype.comparePassword = function(password) {
+  Teacher.prototype.comparePassword = async function(password) {
     // eslint-disable-next-line func-names
-    bcrypt.compare(password, this.password, function(res, err) {
-      if (res) {
-        console.log(res);
-      } else {
-        console.log(err);
-      }
-    });
-    return bcrypt.compare(password, this.password);
-  }
+    // eslint-disable-next-line no-return-await
+    return await bcrypt.compare(password, this.password);
+  };
   // eslint-disable-next-line no-unused-vars,func-names
   Teacher.associate = function(models) {
     // associations can be defined here

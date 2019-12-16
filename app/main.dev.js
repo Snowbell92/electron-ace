@@ -15,8 +15,6 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 
-const bcrypt = require('bcrypt');
-
 const db = require('../db/db');
 
 export default class AppUpdater {
@@ -64,11 +62,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', async () => {
-  const { session } = require('electron');
-  const currentSession = session.fromPartition('persist:name');
-  // because session cannot be started without ready
-  const cookies = require('./cookie/cookie');
-
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.DEBUG_PROD === 'true'
@@ -132,7 +125,7 @@ app.on('ready', async () => {
         });
       })
       .catch(error => {
-        console.log(error);
+       //cls console.log(error);
         return event.sender.send('REGISTER_COMPLETE', {
           text: 'failed',
           message: 'Registration failed'
@@ -147,7 +140,6 @@ app.on('ready', async () => {
     db.teacher
       .findOne({ where: { username: teacher.username } })
       .then(entry => {
-        // console.log(entry);
         // entry will be the first entry of the teacher table with the username 'userame' || null
         // eslint-disable-next-line promise/always-return
         if (!entry) {
@@ -156,18 +148,18 @@ app.on('ready', async () => {
             message: "user doesn't exist"
           });
         }
-        bcrypt
-          .compare(teacher.password, entry.dataValues.password)
+        entry
+          .comparePassword(teacher.password)
           .then(result => {
             if (result) {
-              console.log('authentication successful');
-              console.log('show data');
-              console.log(result);
-              cookies.setCookie(currentSession);
+              // localStorage.setItem('users', JSON.stringify(user))
               return event.sender.send('LOGIN_COMPLETE', {
                 text: 'success',
                 message: 'Login successful',
-                username: result.username
+                user: {
+                  username: entry.dataValues.username,
+                  id: entry.dataValues.id
+                }
               });
             } else {
               console.log("authentication failed. Password doesn't match");
@@ -181,7 +173,7 @@ app.on('ready', async () => {
       })
       // eslint-disable-next-line no-shadow,promise/always-return
       .catch(error => {
-        console.log(error);
+        //console.log(error);
         event.sender.send('LOGIN_FAILED', {
           text: 'failed',
           message: 'user does not exist',
