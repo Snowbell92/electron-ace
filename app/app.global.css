@@ -45,3 +45,8 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* custom column directions */
+.direction-horizontal{
+  flex-direction: column;
+}
