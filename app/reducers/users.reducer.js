@@ -1,5 +1,6 @@
 import { userConstants } from '../constants';
 
+// eslint-disable-next-line import/prefer-default-export
 export function users(state = {}, action) {
   switch (action.type) {
     case userConstants.GETALL_REQUEST:

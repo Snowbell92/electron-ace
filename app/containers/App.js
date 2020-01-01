@@ -8,7 +8,7 @@ import { PrivateRoute } from '../PrivateRoute';
 import { HomePage } from '../components/Home';
 import { LoginPage } from '../components/Login';
 import { RegisterPage } from '../components/Register';
-import AddLessonElement from '../components/lession_components/AddLessonElement';
+import { AddLessonElement } from '../components/lession_components/AddLessonElement';
 
 class App extends React.Component {
   constructor(props) {

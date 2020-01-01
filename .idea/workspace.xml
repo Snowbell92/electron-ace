@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73ff0e07-885a-4a20-8eba-633fd3fb35dd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/components/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/common_components/FormInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/common_components/PreviewInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/common_components/SelectInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.global.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/lession_components/AddLessonElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/lession_components/AddLessonElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/containers/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/database.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dll/renderer.dev.dll.js" beforeDir="false" afterPath="$PROJECT_DIR$/dll/renderer.dev.dll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dll/renderer.json" beforeDir="false" afterPath="$PROJECT_DIR$/dll/renderer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="2f7c5ce0-cd51-45ec-b47c-f0b96c61c998" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,39 +12,13 @@
       <executable />
     </execution>
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectId" id="1UQFf2demkIEnFLSmy1OC6yYXZE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1Vk7AraJ3XbkN37x9rkb1m1iMSn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -70,28 +26,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.13.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="C:\node-dist\test-r\myProject\node_modules\prettier" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\node-dist\project\node_modules\prettier" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\node-dist\test-r\myProject\app\components\common_components" />
-      <recent name="C:\node-dist\test-r\myProject\app" />
-      <recent name="C:\node-dist\test-r\myProject" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\node-dist\project\app" />
+      <recent name="C:\node-dist\project" />
+      <recent name="C:\node-dist\project\app\reducers" />
+      <recent name="C:\node-dist\project\app\constants" />
+      <recent name="C:\node-dist\project\app\actions" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -111,66 +62,18 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="73ff0e07-885a-4a20-8eba-633fd3fb35dd" name="Default Changelist" comment="" />
-      <created>1575281012160</created>
+      <changelist id="2f7c5ce0-cd51-45ec-b47c-f0b96c61c998" name="Default Changelist" comment="" />
+      <created>1577785098775</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1575281012160</updated>
-      <workItem from="1575281023003" duration="1186000" />
-      <workItem from="1575282343339" duration="2061000" />
-      <workItem from="1575351286488" duration="15000" />
-      <workItem from="1575388398693" duration="1781000" />
-      <workItem from="1575433929182" duration="604000" />
-      <workItem from="1575449547593" duration="3594000" />
-      <workItem from="1575548507114" duration="979000" />
-      <workItem from="1575552136264" duration="2375000" />
-      <workItem from="1575640581000" duration="1340000" />
-      <workItem from="1575689129515" duration="6324000" />
-      <workItem from="1575881984232" duration="8630000" />
-      <workItem from="1576038864728" duration="39000" />
-      <workItem from="1576077695575" duration="6373000" />
-      <workItem from="1576213451712" duration="14645000" />
-      <workItem from="1576298915014" duration="9247000" />
-      <workItem from="1576335411525" duration="1496000" />
-      <workItem from="1576385707254" duration="7370000" />
-      <workItem from="1576402014819" duration="8907000" />
-      <workItem from="1576488457438" duration="10495000" />
-      <workItem from="1576848366482" duration="3342000" />
-      <workItem from="1576867192837" duration="47000" />
-      <workItem from="1576998501768" duration="1936000" />
-      <workItem from="1577076078534" duration="604000" />
-      <workItem from="1577343804400" duration="6841000" />
-      <workItem from="1577435126717" duration="4796000" />
+      <updated>1577785098775</updated>
+      <workItem from="1577785107968" duration="1279000" />
+      <workItem from="1577789598960" duration="11000" />
+      <workItem from="1577871815166" duration="3058000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="275" y="25" key="#ESLint" timestamp="1577442647538">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="25" key="#ESLint/0.0.1366.728@0.0.1366.728" timestamp="1577442647538" />
-    <state x="589" y="1105" key="#ESLint/314.1080.1366.728/0.0.1920.1040@314.1080.1366.728" timestamp="1576411545158" />
-    <state x="589" y="1106" key="#Stylelint" timestamp="1577359742374">
-      <screen x="314" y="1080" width="1366" height="728" />
-    </state>
-    <state x="589" y="1106" key="#Stylelint/314.1080.1366.728/0.0.1920.1040@314.1080.1366.728" timestamp="1577359742374" />
-    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1576409190872">
-      <screen x="314" y="1080" width="1366" height="728" />
-    </state>
-    <state width="196" height="457" key="HiddenNamespacesPopup/314.1080.1366.728/0.0.1920.1040@314.1080.1366.728" timestamp="1576409190872" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/index.js</url>
-          <line>2</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

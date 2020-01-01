@@ -3,6 +3,7 @@ import React from 'react';
 const Select = props => {
   return (
     <div className="form-group">
+      {/* eslint-disable-next-line react/destructuring-assignment */}
       <label htmlFor={props.name}> {props.title} </label>
       <select
         name={props.name}

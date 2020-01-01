@@ -38,7 +38,7 @@ FormInput.defaultProps = {
 
 FormInput.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string,
+  // type: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   // eslint-disable-next-line no-dupe-keys
   type: PropTypes.oneOf(['text', 'number', 'password']),

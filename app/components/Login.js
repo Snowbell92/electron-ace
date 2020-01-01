@@ -81,4 +81,5 @@ const actionCreators = {
 };
 
 const connectedLoginPage = connect(mapState, actionCreators)(LoginPage);
+// eslint-disable-next-line import/prefer-default-export
 export { connectedLoginPage as LoginPage };

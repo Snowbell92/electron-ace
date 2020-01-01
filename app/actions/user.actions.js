@@ -3,6 +3,7 @@ import { userService } from '../services';
 import { alertActions } from './alert.actions';
 import { history } from '../helpers/history';
 
+// eslint-disable-next-line import/prefer-default-export
 export const userActions = {
   login,
   logout,

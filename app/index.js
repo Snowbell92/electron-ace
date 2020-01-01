@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 //import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 //import Root from './containers/Root';
-import {store} from './helpers/store';
+import { store } from './helpers/store';
 import { Provider } from 'react-redux';
 import { App } from 'containers/App';
 import './app.global.css';
