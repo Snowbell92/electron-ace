@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Popup from './common_components/Popup';
-import AddLessonPopup from './lession_components/AddLessonPopup';
+import AddLessonPopup from './lesson_components/AddLessonPopup';
 
 class HomePage extends React.Component {
   constructor(props) {

@@ -8,7 +8,7 @@ import { PrivateRoute } from '../PrivateRoute';
 import { HomePage } from '../components/Home';
 import { LoginPage } from '../components/Login';
 import { RegisterPage } from '../components/Register';
-import { AddLessonElement } from '../components/lession_components/AddLessonElement';
+import { AddLessonElement } from '../components/lesson_components/AddLessonElement';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,24 +23,20 @@ class App extends React.Component {
   render() {
     const { alert } = this.props;
     return (
-      <div className="jumbotron">
-        <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
-            {/* eslint-disable-next-line react/prop-types */}
-            {alert.message &&
-            <div className={`alert ${alert.type}`}>{alert.message}</div>
-            }
-            <Router history={history}>
-              <Switch>
-                <PrivateRoute exact path="/" component={HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
-                <Route path="/addLessonElement" component={AddLessonElement} />
-                <Redirect from="*" to="/" />
-              </Switch>
-            </Router>
-          </div>
-        </div>
+      <div className="app-container">
+        {/* eslint-disable-next-line react/prop-types */}
+        {alert.message && (
+          <div className={`alert ${alert.type}`}>{alert.message}</div>
+        )}
+        <Router history={history}>
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/addLessonElement" component={AddLessonElement} />
+            <Redirect from="*" to="/" />
+          </Switch>
+        </Router>
       </div>
     );
   }
