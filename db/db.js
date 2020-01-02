@@ -9,7 +9,7 @@ const sequelize = new Sequelize('database', null, null, {
 const db = {};
 
 db.lesson = sequelize.import(path.join(__dirname, '/models/lesson.js'));
-db.lesson_elemensts = sequelize.import(
+db.lesson_elements = sequelize.import(
   path.join(__dirname, '/models/lesson_elements.js')
 );
 db.student = sequelize.import(path.join(__dirname, '/models/student.js'));

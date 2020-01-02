@@ -16,7 +16,10 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 
 const fse = require('fs-extra');
+const ba64 = require('ba64');
 const db = require('../db/db');
+
+const imageDir = 'app/assets/images/';
 
 export default class AppUpdater {
   constructor() {
@@ -126,7 +129,7 @@ app.on('ready', async () => {
         });
       })
       .catch(error => {
-        //cls console.log(error);
+        // cls console.log(error);
         return event.sender.send('REGISTER_COMPLETE', {
           text: 'failed',
           message: 'Registration failed'
@@ -162,19 +165,18 @@ app.on('ready', async () => {
                   id: entry.dataValues.id
                 }
               });
-            } else {
-              console.log("authentication failed. Password doesn't match");
-              return event.sender.send('LOGIN_COMPLETE', {
-                text: 'failed',
-                message: 'Invalid Credentials'
-              });
             }
+            console.log("authentication failed. Password doesn't match");
+            return event.sender.send('LOGIN_COMPLETE', {
+              text: 'failed',
+              message: 'Invalid Credentials'
+            });
           })
           .catch(err => console.error(err));
       })
       // eslint-disable-next-line no-shadow,promise/always-return
       .catch(error => {
-        //console.log(error);
+        // console.log(error);
         event.sender.send('LOGIN_FAILED', {
           text: 'failed',
           message: 'user does not exist',
@@ -184,60 +186,82 @@ app.on('ready', async () => {
   });
 
   ipcMain.on('ADD_ELEMENT', (event, element) => {
-    // save and rename the file to proper directory
-
-    if (!Array.isArray(element.images) || !element.images.length) {
-      // image exists
-      console.log('images exists');
-      
-    }
-
-
-
-
-    // eslint-disable-next-line promise/catch-or-return
-    /*db.teacher
-      .findOne({ where: { username: teacher.username } })
-      .then(entry => {
-        // entry will be the first entry of the teacher table with the username 'userame' || null
-        // eslint-disable-next-line promise/always-return
-        if (!entry) {
-          return event.sender.send('LOGIN_COMPLETE', {
-            text: 'failed',
-            message: "user doesn't exist"
-          });
-        }
-        entry
-          .comparePassword(teacher.password)
-          .then(result => {
-            if (result) {
-              // localStorage.setItem('users', JSON.stringify(user))
-              return event.sender.send('LOGIN_COMPLETE', {
-                text: 'success',
-                message: 'Login successful',
-                user: {
-                  username: entry.dataValues.username,
-                  id: entry.dataValues.id
+    return new Promise((resolve, reject) => {
+      if (Array.isArray(element.images) && element.images.length) {
+        // image exists. save image to proper folder.create folder if necessary
+        for (let i = 0; i < element.images.length; i++) {
+          const subDir = imageDir + element.word;
+          // eslint-disable-next-line promise/always-return
+          fse
+            .ensureDir(subDir)
+            // eslint-disable-next-line promise/always-return
+            .then(data => {
+              console.log(data);
+              const fullImagePath = `${imageDir + element.word}/${
+                element.word
+              }_${i}`;
+              // Or save the image asynchronously.
+              ba64.writeImage(
+                fullImagePath,
+                element.images[i].toString(),
+                function(err) {
+                  if (err) {
+                    reject(new Error('Image could not be saved to disk'));
+                  }
+                  console.log('Image saved successfully');
                 }
-              });
-            } else {
-              console.log("authentication failed. Password doesn't match");
-              return event.sender.send('LOGIN_COMPLETE', {
-                text: 'failed',
-                message: 'Invalid Credentials'
-              });
+              );
+            })
+            .catch(err => {
+              console.error(err);
+              reject(
+                new Error(
+                  'something went wrong and image could not be saved to disk.'
+                )
+              );
+            });
+        }
+        db.allImages
+          .findOrCreate({
+            where: {
+              name: element.word
             }
           })
-          .catch(err => console.error(err));
-      })
-      // eslint-disable-next-line no-shadow,promise/always-return
-      .catch(error => {
-        //console.log(error);
-        event.sender.send('LOGIN_FAILED', {
-          text: 'failed',
-          message: 'user does not exist',
-          error
+          // eslint-disable-next-line promise/always-return
+          .then(data => {
+            console.log(data);
+          })
+          .catch(err => {
+            console.log(err);
+            reject(new Error('Image could not be saved to database'));
+          });
+      }
+
+      db.lesson_elements
+        .findOrCreate({
+          where: {
+            // TODO: pass proper type from parent dropdown, i.e noun/verb/associate etc
+            type: 'noun',
+            word: element.word
+          }
+          // eslint-disable-next-line promise/always-return
+        })
+        .then(result => {
+          console.log(result);
+          resolve(result);
+          return event.sender.send('ELEMENT_ADDED', {
+            text: 'success',
+            message: 'Element added successfully'
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          reject(error);
+          return event.sender.send('ELEMENT_ADDED', {
+            text: 'failed',
+            message: 'Element could not be added to the database'
+          });
         });
-      });*/
+    });
   });
 });

@@ -12,6 +12,5 @@ module.exports = (sequelize, DataTypes) => {
   Lesson_Elements.associate = function(models) {
     // associations can be defined here
   };
-  // eslint-disable-next-line camelcase
   return Lesson_Elements;
 };

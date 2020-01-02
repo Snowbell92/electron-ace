@@ -15,6 +15,7 @@ class AddLessonElement extends React.Component {
       images: [null],
       wordTypes: ['Animals', 'Vehicles', 'People', 'Toys'],
       errors: {},
+      pending: false,
       submitted: false
     };
     this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
@@ -39,9 +40,9 @@ class AddLessonElement extends React.Component {
       wordType: '' || this.state.element_type,
       images: this.state.images
     }
-    this.setState({ submitted: true });
+    this.setState({ pending: true });
     if (element) {
-      this.props.submitted(element);
+      this.props.pending(element);
     }
   }
 
@@ -101,7 +102,7 @@ class AddLessonElement extends React.Component {
   }
 
   render() {
-    const { submitted, errors } = this.state;
+    const { pending, errors } = this.state;
     return (
       <div>
         <h2>Add new lesson element</h2>
@@ -133,7 +134,7 @@ class AddLessonElement extends React.Component {
             error={errors.fileError}
           />
           <button type="submit">submit</button>
-          {submitted && <p>please wait</p>}
+          {pending && <p>please wait</p>}
         </form>
       </div>
     );
@@ -141,13 +142,12 @@ class AddLessonElement extends React.Component {
 }
 
 function mapState(state) {
-  const { submitted } = state.editForm;
-  return { submitted };
+  const { pending } = state.editForm;
+  return { pending };
 }
 
 const actionCreators = {
-  pending: editActions.pending,
-  submitted: editActions.submitted
+  pending: editActions.pending
 };
 
 const connectedElementForm = connect(

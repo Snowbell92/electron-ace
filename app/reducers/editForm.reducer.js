@@ -20,8 +20,6 @@ export default function editForm(state = initialState.edit, action) {
         data: newForm
       };
     case editConstants.PENDING:
-      console.log('pending');
-      console.log(...state);
       return {
         ...state,
         status: editConstants.PENDING
@@ -33,6 +31,15 @@ export default function editForm(state = initialState.edit, action) {
         changed: false,
         data: action.form,
         status: editConstants.SUBMITTED
+      };
+
+    case editConstants.FAILED:
+      console.log('failed');
+      return {
+        ...state,
+        changed: false,
+        data: action.form,
+        status: editConstants.FAILED
       };
 
     default:

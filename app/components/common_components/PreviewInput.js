@@ -29,7 +29,7 @@ class PreviewInput extends React.Component {
 }
 
 PreviewInput.defaultProps = {
-  error: 'Something went wrong'
+  error: ''
 };
 
 PreviewInput.propTypes = {
