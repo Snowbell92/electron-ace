@@ -242,7 +242,8 @@ app.on('ready', async () => {
           where: {
             // TODO: pass proper type from parent dropdown, i.e noun/verb/associate etc
             type: 'noun',
-            word: element.word
+            word: element.word,
+            word_category: element.wordType
           }
           // eslint-disable-next-line promise/always-return
         })

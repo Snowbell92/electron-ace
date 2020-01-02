@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     'Lesson_Elements',
     {
       type: DataTypes.STRING,
-      word: DataTypes.STRING
+      word: DataTypes.STRING,
+      word_category: DataTypes.STRING
     },
     {}
   );
