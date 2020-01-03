@@ -111,7 +111,7 @@ class AddLessonElement extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12">
-                <h3>Add new lesson element</h3>
+                <h3>Add new lesson</h3>
               </div>
             </div>
           </div>

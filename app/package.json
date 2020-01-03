@@ -17,6 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
+    "dree": "^2.4.10",
     "fs-extra": "^8.1.0",
     "sequelize": "^5.21.3",
     "sqlite": "^3.0.3"

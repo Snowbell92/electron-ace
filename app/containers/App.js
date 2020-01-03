@@ -9,6 +9,7 @@ import { HomePage } from '../components/Home';
 import { LoginPage } from '../components/Login';
 import { RegisterPage } from '../components/Register';
 import { AddLessonElement } from '../components/lesson_components/AddLessonElement';
+import ShowLesson from '../components/teaching_components/showLesson';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends React.Component {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
+            <Route path="/lesson" component={ShowLesson} />
             <Redirect from="*" to="/" />
           </Switch>
         </Router>

@@ -15,6 +15,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 
+const path = require('path');
 const fse = require('fs-extra');
 const ba64 = require('ba64');
 const db = require('../db/db');
@@ -261,6 +262,37 @@ app.on('ready', async () => {
           return event.sender.send('ELEMENT_ADDED', {
             text: 'failed',
             message: 'Element could not be added to the database'
+          });
+        });
+    });
+  });
+
+  ipcMain.on('GET_LESSON_DATA', (event, lessonID) => {
+    return new Promise((resolve, reject) => {
+      db.lesson_elements
+        .findByPk(lessonID)
+        .then(lessonData => {
+          const word = lessonData.getDataValue('word');
+          const dir = path.join(imageDir, word);
+          const images = fse.readdirSync(dir, (err, files) => {
+            return files;
+          });
+          resolve(lessonData);
+          return event.sender.send('LESSON_DATA_FETCHED', {
+            text: 'success',
+            message: 'lesson found',
+            data: {
+              wordName: word,
+              slideImages: images
+            }
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+          return event.sender.send('ELEMENT_ADDED', {
+            text: 'failed',
+            message: 'Not Found'
           });
         });
     });

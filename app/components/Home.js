@@ -19,7 +19,7 @@ class HomePage extends React.Component {
         <div className="row justify-content-center">
           <div className="col-md-8">
             <h1>What do you want to do today?</h1>
-            <div className="row">
+            {/*<div className="row">
               <div className="col-sm-2">
                 <img src={studentsIcon} alt="all students" />
               </div>
@@ -30,20 +30,21 @@ class HomePage extends React.Component {
                   reports from here.
                 </h4>
               </div>
-            </div>
+            </div>*/}
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <div className="row">
               <div className="col-sm-2">
-                <img src={lessonIcon} alt="all lessons" />{' '}
+                <img src={lessonIcon} alt="all lessons" />
               </div>
               <div className="col-sm-10">
-                <Popup
+                <Link to="/addLessonElement"><h2>All Lessons</h2></Link>
+                {/*<Popup
                   trigger={<h2>All Lessons</h2>}
                   modal
                   closeOnDocumentClick
                 >
                   <AddLessonPopup />
-                </Popup>
+                </Popup>*/}
                 <h4>
                   Add new lessons, change previously added lessons, or start a
                   teaching session.
@@ -55,7 +56,9 @@ class HomePage extends React.Component {
                 <img src={teachingIcon} alt="start teaching" />
               </div>
               <div className="col-sm-10">
-                <h2>Start Teaching</h2>
+                <Link to="/lesson">
+                  <h2>Start Teaching</h2>
+                </Link>
                 <h4>
                   Start a new teaching session. You can also start a self study
                   session, with additional sounds and prompts by the computer.

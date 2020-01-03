@@ -275,6 +275,7 @@
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-slideshow-image": "^1.3.3",
     "reactjs-popup": "^1.5.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
