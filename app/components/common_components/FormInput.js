@@ -11,29 +11,39 @@ const FormInput = ({
   error, // eslint-disable-next-line react/prop-types
   children, // eslint-disable-next-line react/prop-types
   label, // eslint-disable-next-line no-unused-vars
+  labelClassName,
+  inputContainerClassName,
   ...props
 }) => {
   return (
     <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        className={className}
-        style={error && { border: 'solid 1px red' }}
-      />
-      {error && <p>{error}</p>}
+      <div className="form-group row">
+        <label htmlFor={name} className={labelClassName}>
+          {label}
+        </label>
+        <div className={inputContainerClassName}>
+          <input
+            id={name}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            onChange={onChange}
+            value={value}
+            className={className}
+            style={error && { border: 'solid 1px red' }}
+          />
+        </div>
+        {error && <p>{error}</p>}
+      </div>
     </>
   );
 };
 
 FormInput.defaultProps = {
   type: 'text',
-  className: ''
+  className: '',
+  labelClassName: '',
+  inputContainerClassName: ''
 };
 
 FormInput.propTypes = {
@@ -43,6 +53,8 @@ FormInput.propTypes = {
   // eslint-disable-next-line no-dupe-keys
   type: PropTypes.oneOf(['text', 'number', 'password']),
   className: PropTypes.string,
+  labelClassName: PropTypes.string,
+  inputContainerClassName: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types,react/require-default-props
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired

@@ -5,21 +5,25 @@ class PreviewInput extends React.Component {
   render() {
     return (
       <>
-        <div className="button">
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control,react/destructuring-assignment */}
-          <label htmlFor="multi">{this.props.label}</label>
-          <button type="button">Browse</button>
-          <input
-            name={this.props.name}
-            type="file"
-            id="multi"
-            onChange={this.props.onChange}
-            multiple
-          />
+        <div className="form-group row">
+          <label htmlFor="multi" className="col-sm-2 col-form-label">
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control,react/destructuring-assignment */}
+            {this.props.label}
+          </label>
+          {/* <button type="button">Browse</button> */}
+          <div className="col-sm-10">
+            <input
+              name={this.props.name}
+              type="file"
+              id="multi"
+              onChange={this.props.onChange}
+              multiple
+            />
+          </div>
         </div>
-        <div className="form-group multi-preview">
+        <div className="form-group-row multi-preview">
           {(this.props.files || []).map(url => (
-            <img src={url} alt="preview" />
+            <img src={url} alt="preview" className="rounded img-thumbnail"/>
           ))}
         </div>
         {this.props.error && <p>{this.props.error}</p>}

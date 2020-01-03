@@ -1,25 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Popup from './common_components/Popup';
+import Popup from 'reactjs-popup';
 import AddLessonPopup from './lesson_components/AddLessonPopup';
-import studentsIcon from "../img/students.png";
-import lessonIcon from "../img/lessons.png";
-import teachingIcon from "../img/teaching.png";
+import studentsIcon from '../img/students.png';
+import lessonIcon from '../img/lessons.png';
+import teachingIcon from '../img/teaching.png';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showPopup: false };
   }
-
-  togglePopup() {
-    this.setState({
-      // eslint-disable-next-line react/destructuring-assignment
-      showPopup: !this.state.showPopup
-    });
-  }
-
   render() {
     // eslint-disable-next-line react/prop-types
     const { user } = this.props;
@@ -41,20 +32,18 @@ class HomePage extends React.Component {
               </div>
             </div>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-            <div
-              className="row"
-              role="dialog"
-              onClick={this.togglePopup.bind(this)}
-            >
-              {this.state.showPopup ? (
-                <Popup
-                  element={<AddLessonPopup/>}
-                  closePopup={this.togglePopup.bind(this)}
-                />
-              ) : null}
-              <div className="col-sm-2"><img src={lessonIcon} alt="all lessons"/> </div>
+            <div className="row">
+              <div className="col-sm-2">
+                <img src={lessonIcon} alt="all lessons" />{' '}
+              </div>
               <div className="col-sm-10">
-                <h2>All Lessons</h2>
+                <Popup
+                  trigger={<h2>All Lessons</h2>}
+                  modal
+                  closeOnDocumentClick
+                >
+                  <AddLessonPopup />
+                </Popup>
                 <h4>
                   Add new lessons, change previously added lessons, or start a
                   teaching session.
@@ -63,7 +52,7 @@ class HomePage extends React.Component {
             </div>
             <div className="row">
               <div className="col-sm-2">
-                <img src={teachingIcon} alt="start teaching" />{' '}
+                <img src={teachingIcon} alt="start teaching" />
               </div>
               <div className="col-sm-10">
                 <h2>Start Teaching</h2>

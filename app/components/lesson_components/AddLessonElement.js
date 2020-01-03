@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import Popup from 'reactjs-popup';
+import { Link } from 'react-router-dom';
 import FormInput from '../common_components/FormInput';
 import Select from '../common_components/SelectInput';
 import PreviewInput from '../common_components/PreviewInput';
@@ -39,7 +41,7 @@ class AddLessonElement extends React.Component {
       word: '' || this.state.element_word,
       wordType: '' || this.state.element_type,
       images: this.state.images
-    }
+    };
     this.setState({ pending: true });
     if (element) {
       this.props.pending(element);
@@ -104,39 +106,100 @@ class AddLessonElement extends React.Component {
   render() {
     const { pending, errors } = this.state;
     return (
-      <div>
-        <h2>Add new lesson element</h2>
-        <form name="element_form" onSubmit={this.handleSubmit}>
-          <Select
-            title="Type"
-            name="type"
-            options={this.state.wordTypes}
-            value={this.state.element_type}
-            placeholder="Select a type"
-            handleChange={this.handleSelectChange}
-          />
-          <FormInput
-            label="Word"
-            name="word"
-            type="text"
-            value={this.state.element_word}
-            onChange={this.handleWordChange}
-            placeholder="Enter a word"
-            error={errors.word}
-            required
-            className="input"
-          />
-          <PreviewInput
-            name="files"
-            label="Picture"
-            onChange={this.uploadMultipleFiles}
-            files={this.fileArray}
-            error={errors.fileError}
-          />
-          <button type="submit">submit</button>
-          {pending && <p>please wait</p>}
-        </form>
-      </div>
+      <>
+        <div className="title-block">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12">
+                <h3>Add new lesson element</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="add-element">
+          <form name="element_form" onSubmit={this.handleSubmit}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
+                  <Select
+                    title="Type"
+                    name="type"
+                    options={this.state.wordTypes}
+                    value={this.state.element_type}
+                    placeholder="Select a type"
+                    handleChange={this.handleSelectChange}
+                  />
+                  <FormInput
+                    label="Word"
+                    labelClassName="col-sm-2 col-form-label"
+                    name="word"
+                    type="text"
+                    value={this.state.element_word}
+                    onChange={this.handleWordChange}
+                    placeholder="Enter a word"
+                    error={errors.word}
+                    required
+                    className="form-control"
+                    inputContainerClassName="col-sm-10"
+                  />
+                  <PreviewInput
+                    name="files"
+                    label="Picture"
+                    onChange={this.uploadMultipleFiles}
+                    files={this.fileArray}
+                    error={errors.fileError}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="grouped-button-bottom-bar">
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm">
+                    <Popup
+                      trigger={
+                        <button className="btn btn-default" type="button">
+                          Cancel
+                        </button>
+                      }
+                      modal
+                    >
+                      {close => (
+                        <div className="warning-modal">
+                          <div>
+                            <h4>Are you Sure?</h4>
+                            <p>
+                              No changes will be saved. please click confirm to
+                              discard all information
+                            </p>
+                            <Link to="/" className="btn btn-default">
+                              Confirm
+                            </Link>
+                            <button
+                              className="btn btn-light"
+                              type="button"
+                              onClick={() => {
+                                console.log('modal closed ');
+                                close();
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </Popup>
+                    <button type="submit" className="btn btn-primary">
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }
