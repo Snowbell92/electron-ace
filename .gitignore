@@ -42,6 +42,9 @@ app/renderer.prod.js
 app/renderer.prod.js.map
 app/style.css
 app/style.css.map
+app/assets/images/*
+app/assets/videos/*
+app/assets/audios/*
 dist
 dll
 main.js
@@ -49,3 +52,5 @@ main.js.map
 
 .idea
 npm-debug.log.*
+
+.sqlite3

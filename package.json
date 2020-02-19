@@ -272,6 +272,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.18",
+    "react-quiz-component": "^0.3.2",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
@@ -279,6 +280,7 @@
     "reactjs-popup": "^1.5.0",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "sequelize": "^5.21.3",
     "source-map-support": "^0.5.16"
   },
   "devEngines": {
