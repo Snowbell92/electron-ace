@@ -283,7 +283,7 @@ app.on('ready', async () => {
             message: 'lesson found',
             data: {
               wordName: word,
-              slideImages: images
+              slideImages: Object.values(images)
             }
           });
         })

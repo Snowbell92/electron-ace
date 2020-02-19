@@ -15,8 +15,15 @@ function fetchLesson(id) {
       .then(
         // eslint-disable-next-line promise/always-return
         data => {
-          console.log(data);
-          dispatch(success(data));
+          console.log(data)
+          const vals = Object.keys(data.data.slideImages).map(function(key) {
+            return data.data.slideImages[key];
+          })
+          const lessonData = {
+            word: data.data.wordName,
+            slideImages: vals
+          };
+          dispatch(success(lessonData));
         }
       )
       .catch(error => {

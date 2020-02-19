@@ -19,7 +19,7 @@ const lessonData = (state = initialState.showLesson, action) => {
       return {
         isLoading: false,
         isLoaded: true,
-        data: action.lessonData.data
+        data: action.lessonData
       };
     default:
       return state;

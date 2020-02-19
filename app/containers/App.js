@@ -10,6 +10,8 @@ import { LoginPage } from '../components/Login';
 import { RegisterPage } from '../components/Register';
 import { AddLessonElement } from '../components/lesson_components/AddLessonElement';
 import ShowLesson from '../components/teaching_components/showLesson';
+import QuizChoiceComponent from '../components/teaching_components/quizChoiceComponent';
+import AddNewStudent from '../components/student_components/addNewStudent';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +38,8 @@ class App extends React.Component {
             <Route path="/register" component={RegisterPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
             <Route path="/lesson" component={ShowLesson} />
+            <Route path="/quiz" component={QuizChoiceComponent}/>
+            <Route path="/newStudent" component={AddNewStudent}/>
             <Redirect from="*" to="/" />
           </Switch>
         </Router>

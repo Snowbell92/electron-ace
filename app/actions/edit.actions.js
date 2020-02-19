@@ -1,6 +1,7 @@
 import { editConstants } from '../constants';
 import { addElementService } from '../services';
 import { alertActions } from './alert.actions';
+import { history } from '../helpers/history';
 
 export const editActions = {
   pending
@@ -16,6 +17,7 @@ function pending(element) {
       // eslint-disable-next-line promise/always-return
       data => {
         dispatch(success(data));
+        history.push('/');
       },
       error => {
         dispatch(failure(error));

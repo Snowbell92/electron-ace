@@ -19,25 +19,29 @@ class HomePage extends React.Component {
         <div className="row justify-content-center">
           <div className="col-md-8">
             <h1>What do you want to do today?</h1>
-            {/*<div className="row">
+            <div className="row">
               <div className="col-sm-2">
                 <img src={studentsIcon} alt="all students" />
               </div>
               <div className="col-sm-10">
+                <Link to="/newStudent">
                 <h2>All Students</h2>
+                </Link>
                 <h4>
                   Add a new student, edit existing student details or view
                   reports from here.
                 </h4>
               </div>
-            </div>*/}
+            </div>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <div className="row">
               <div className="col-sm-2">
                 <img src={lessonIcon} alt="all lessons" />
               </div>
               <div className="col-sm-10">
-                <Link to="/addLessonElement"><h2>All Lessons</h2></Link>
+                <Link to="/addLessonElement">
+                  <h2>All Lessons</h2>
+                </Link>
                 {/*<Popup
                   trigger={<h2>All Lessons</h2>}
                   modal

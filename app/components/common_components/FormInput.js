@@ -22,16 +22,33 @@ const FormInput = ({
           {label}
         </label>
         <div className={inputContainerClassName}>
-          <input
-            id={name}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            onChange={onChange}
-            value={value}
-            className={className}
-            style={error && { border: 'solid 1px red' }}
-          />
+          {(() => {
+            if (type === 'textarea') {
+              return (
+                <textarea
+                  id={name}
+                  name={name}
+                  placeholder={placeholder}
+                  onChange={onChange}
+                  className={className}
+                  style={error && { border: 'solid 1px red' }}
+                />
+              );
+            } else {
+              return (
+                <input
+                  id={name}
+                  name={name}
+                  type={type}
+                  placeholder={placeholder}
+                  onChange={onChange}
+                  value={value}
+                  className={className}
+                  style={error && { border: 'solid 1px red' }}
+                />
+              );
+            }
+          })()}
         </div>
         {error && <p>{error}</p>}
       </div>
