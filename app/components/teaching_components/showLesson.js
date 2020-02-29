@@ -3,6 +3,7 @@ import { Slide } from 'react-slideshow-image';
 import { connect } from 'react-redux';
 import { showLessonActions } from '../../actions/showLesson.actions';
 import { Link } from 'react-router-dom';
+import Puzzle from '../question_components/puzzle/Puzzle';
 
 class ShowLesson extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class ShowLesson extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-    this.props.dispatch(showLessonActions.fetchLesson(5));
+    this.props.dispatch(showLessonActions.fetchLesson(3));
   }
 
   properties = {
@@ -87,9 +88,9 @@ class ShowLesson extends React.Component {
                   </Link>
                   {/* eslint-disable-next-line react/destructuring-assignment */}
                   {this.state.slideshowCompleted && (
-                    <Link className="btn btn-default" to="/quiz">
-                      Go to Quiz
-                    </Link>
+
+                    <Puzzle image="assets/images/Bugatti/Bugatti_0.jpeg" />
+
                   )}
                 </div>
               </div>

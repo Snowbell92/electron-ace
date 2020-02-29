@@ -12,6 +12,7 @@ import { AddLessonElement } from '../components/lesson_components/AddLessonEleme
 import ShowLesson from '../components/teaching_components/showLesson';
 import QuizChoiceComponent from '../components/teaching_components/quizChoiceComponent';
 import AddNewStudent from '../components/student_components/addNewStudent';
+import Puzzle from '../components/question_components/puzzle/Puzzle'
 
 class App extends React.Component {
   constructor(props) {

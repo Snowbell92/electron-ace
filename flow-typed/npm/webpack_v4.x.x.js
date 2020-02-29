@@ -1,5 +1,5 @@
-// flow-typed signature: 32e9c1b1fd1074c60b3fe9b6320f8bcc
-// flow-typed version: b942841feb/webpack_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: 8487458862a7f2435ea70faad258dafd
+// flow-typed version: 7448070196/webpack_v4.x.x/flow_>=v0.104.x
 
 import * as http from 'http';
 import fs from 'fs';
@@ -17,7 +17,7 @@ declare module 'webpack' {
     hasErrors(): boolean;
     hasWarnings(): boolean;
     toJson(options?: StatsOptions): any;
-    toString(options?: StatsOptions & { colors?: boolean, ... }): string;
+    toString(options?: { ...StatsOptions, colors?: boolean, ... }): string;
   }
 
   declare type Callback = (error: WebpackError, stats: Stats) => void;
