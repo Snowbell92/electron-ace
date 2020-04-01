@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { editConstants } from '../constants';
 import { addElementService } from '../services';
 import { alertActions } from './alert.actions';

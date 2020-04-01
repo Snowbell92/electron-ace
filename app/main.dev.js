@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint global-require: off */
 
 /**
@@ -265,6 +266,36 @@ app.on('ready', async () => {
           });
         });
     });
+  });
+
+  ipcMain.on('ADD_LESSON', (event, lesson) => {
+    // run the sequelize query
+    // eslint-disable-next-line promise/catch-or-return
+    db.Lessons
+      .findOrCreate({
+        where: {
+          name: lesson.value,
+          thumbnailPath:lesson.selectedFile
+        }
+      })
+      // eslint-disable-next-line no-shadow,promise/always-return
+      .then(result => {
+        console.log(result);
+        // eslint-disable-next-line no-undef
+        resolve(result);
+        return event.sender.send('LESSON_ADDED', {
+          text: 'success',
+          message: 'Lesson added successfully'
+        });
+      }).catch(error => {
+        console.log(error);
+        // eslint-disable-next-line no-undef
+        reject(error);
+        return event.sender.send('ELEMENT_ADDED', {
+          text: 'failed',
+          message: 'Element could not be added to the database'
+        });
+      });
   });
 
   ipcMain.on('GET_LESSON_DATA', (event, lessonID) => {

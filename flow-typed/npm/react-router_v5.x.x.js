@@ -1,5 +1,5 @@
-// flow-typed signature: c8d159d8d7a85ffe7d33dc69a534033a
-// flow-typed version: 822e55b7ba/react-router_v5.x.x/flow_>=v0.104.x
+// flow-typed signature: 4d8a22ec18df7717acc7f36ae65ccf4c
+// flow-typed version: 45d63d67fa/react-router_v5.x.x/flow_>=v0.104.x
 
 declare module "react-router" {
   // NOTE: many of these are re-exported by react-router-dom and
@@ -9,8 +9,6 @@ declare module "react-router" {
     pathname: string,
     search: string,
     hash: string,
-    state?: any,
-    key?: string,
     ...
   };
 
@@ -18,7 +16,6 @@ declare module "react-router" {
     pathname?: string,
     search?: string,
     hash?: string,
-    state?: any,
     ...
   };
 
@@ -40,9 +37,6 @@ declare module "react-router" {
     block(
       callback: string | (location: Location, action: HistoryAction) => ?string
     ): () => void,
-    // createMemoryHistory
-    index?: number,
-    entries?: Array<Location>,
     ...
   };
 

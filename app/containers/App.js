@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,8 +11,12 @@ import { PrivateRoute } from '../PrivateRoute';
 import { HomePage } from '../components/Home';
 import { LoginPage } from '../components/Login';
 import { RegisterPage } from '../components/Register';
+import { AddLessonPage } from '../components/add_lesson/AddNewLesson';
 import { AddLessonElement } from '../components/lesson_components/AddLessonElement';
 import ShowLesson from '../components/teaching_components/showLesson';
+import TabView from '../components/TabView';
+import AddNoun from '../components/add_lesson/AddNoun';
+// eslint-disable-next-line no-unused-vars
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +24,8 @@ class App extends React.Component {
     // eslint-disable-next-line no-unused-vars
     history.listen((location, action) => {
       // clear alert on location change
+      // eslint-disable-next-line react/destructuring-assignment
+      // eslint-disable-next-line react/prop-types
       this.props.clearAlerts();
     });
   }
@@ -27,6 +36,7 @@ class App extends React.Component {
       <div className="app-container">
         {/* eslint-disable-next-line react/prop-types */}
         {alert.message && (
+          // eslint-disable-next-line react/prop-types
           <div className={`alert ${alert.type}`}>{alert.message}</div>
         )}
         <Router history={history}>
@@ -34,7 +44,10 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
+            <Route path="/tabView" component={TabView} />
+            <Route path="/AddLesson" component={AddLessonPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
+            <Route path="/AddNoun" component={AddNoun} />
             <Route path="/lesson" component={ShowLesson} />
             <Redirect from="*" to="/" />
           </Switch>
@@ -54,4 +67,5 @@ const actionCreators = {
 };
 
 const connectedApp = connect(mapState, actionCreators)(App);
+// eslint-disable-next-line import/prefer-default-export
 export { connectedApp as App };

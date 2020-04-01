@@ -1,3 +1,9 @@
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable class-methods-use-this */
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
@@ -38,6 +44,7 @@ class AddLessonElement extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const element = {
+      // eslint-disable-next-line react/destructuring-assignment
       word: '' || this.state.element_word,
       wordType: '' || this.state.element_type,
       images: this.state.images

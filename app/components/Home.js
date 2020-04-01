@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import AddLessonPopup from './lesson_components/AddLessonPopup';
+import AddLessonPage from './add_lesson/AddNewLesson';
 import studentsIcon from '../img/students.png';
 import lessonIcon from '../img/lessons.png';
 import teachingIcon from '../img/teaching.png';
@@ -11,6 +14,7 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     // eslint-disable-next-line react/prop-types
     const { user } = this.props;
@@ -19,7 +23,7 @@ class HomePage extends React.Component {
         <div className="row justify-content-center">
           <div className="col-md-8">
             <h1>What do you want to do today?</h1>
-            {/*<div className="row">
+            <div className="row">
               <div className="col-sm-2">
                 <img src={studentsIcon} alt="all students" />
               </div>
@@ -30,21 +34,23 @@ class HomePage extends React.Component {
                   reports from here.
                 </h4>
               </div>
-            </div>*/}
+            </div>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <div className="row">
               <div className="col-sm-2">
                 <img src={lessonIcon} alt="all lessons" />
               </div>
               <div className="col-sm-10">
-                <Link to="/addLessonElement"><h2>All Lessons</h2></Link>
-                {/*<Popup
+                <Link to="/tabView">
+                  <h2>All Lessons</h2>
+                </Link>
+                {/* <Popup
                   trigger={<h2>All Lessons</h2>}
                   modal
                   closeOnDocumentClick
                 >
                   <AddLessonPopup />
-                </Popup>*/}
+                </Popup> */}
                 <h4>
                   Add new lessons, change previously added lessons, or start a
                   teaching session.

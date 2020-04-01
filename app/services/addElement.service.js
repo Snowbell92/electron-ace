@@ -1,5 +1,6 @@
 const ipc = require('electron').ipcRenderer;
 
+// eslint-disable-next-line import/prefer-default-export
 export const addElementService = {
   addElement
 };
@@ -21,7 +22,7 @@ function addElement(element) {
       }
       return resolve(result);
     });
-    // eslint-disable-next-line promise/always-return
+    // e slint-disable-next-line promise/always-return
   }).then(message => {
     // eslint-disable-next-line no-shadow
     return message;

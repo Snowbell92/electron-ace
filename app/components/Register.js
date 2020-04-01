@@ -1,3 +1,7 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-fragments */
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -43,6 +47,7 @@ class RegisterPage extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
     const { registering } = this.props;
     const { user, submitted } = this.state;
     return (
