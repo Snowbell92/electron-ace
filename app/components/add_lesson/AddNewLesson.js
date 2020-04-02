@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 import { editNewLessonActions } from '../../actions/editNewLesson';
 
 class AddLesson extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       name: '',
       // eslint-disable-next-line react/no-unused-state
