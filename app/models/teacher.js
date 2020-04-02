@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {

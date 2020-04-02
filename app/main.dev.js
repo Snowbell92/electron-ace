@@ -274,8 +274,8 @@ app.on('ready', async () => {
     db.Lessons
       .findOrCreate({
         where: {
-          name: lesson.value,
-          thumbnailPath:lesson.selectedFile
+          name: lesson.name,
+          thumbnailPath:lesson.thumbnail
         }
       })
       // eslint-disable-next-line no-shadow,promise/always-return
