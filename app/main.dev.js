@@ -271,11 +271,11 @@ app.on('ready', async () => {
   ipcMain.on('ADD_LESSON', (event, lesson) => {
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
-    db.Lessons
+    db.lesson
       .findOrCreate({
         where: {
           name: lesson.name,
-          thumbnailPath:lesson.thumbnail
+          thumbnail:lesson.thumbnail
         }
       })
       // eslint-disable-next-line no-shadow,promise/always-return

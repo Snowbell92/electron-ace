@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Lesson = sequelize.define(
-    'Lesson',
+  const lesson = sequelize.define(
+    'lesson',
     {
       name: DataTypes.STRING,
       thumbnail: DataTypes.STRING
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   // eslint-disable-next-line no-unused-vars,func-names
-  Lesson.associate = function(models) {
+  lesson.associate = function(models) {
     // associations can be defined here
   };
-  return Lesson;
+  return lesson;
 };

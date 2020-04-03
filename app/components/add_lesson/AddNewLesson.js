@@ -18,7 +18,7 @@ class AddLesson extends React.Component {
       name: '',
       // eslint-disable-next-line react/no-unused-state
       thumbnail: [null],
-
+      thumbnailPath: '',
       submitted: false,
       errors: {},
       // eslint-disable-next-line react/no-unused-state
@@ -41,10 +41,13 @@ class AddLesson extends React.Component {
     alert(`A name was submitted: ${this.state.name}`);
     // eslint-disable-next-line spaced-comment
     event.preventDefault();
+    console.log(this.state.name);
+    console.log('you are not alone');
+    console.log(this.state.thumbnail[0]);
 
     const lesson = {
       name: '' || this.state.name,
-      thumbnail: this.state.thumbnail[0]
+      thumbnail: this.state.thumbnailPath
     };
     this.setState({ pending: true });
     // eslint-disable-next-line eqeqeq
@@ -100,6 +103,7 @@ class AddLesson extends React.Component {
         this.fileArray.push(thumbnail);
         /* Once all promises are resolved, update state with image URI array */
         // eslint-disable-next-line func-names
+        this.setState({ thumbnailPath: string });
         this.setState({ thumbnail: this.fileArray }, function() {
           console.log(this.state.thumbnail[0]);
         });
