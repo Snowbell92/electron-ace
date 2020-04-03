@@ -7,10 +7,13 @@ import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import { Link } from 'react-router-dom';
 import { editNewLessonActions } from '../../actions/editNewLesson';
+import FormInput from '../common_components/FormInput';
+import Select from '../common_components/SelectInput';
+import PreviewInput from '../common_components/PreviewInput';
 
 class AddLesson extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       name: '',
       // eslint-disable-next-line react/no-unused-state
@@ -48,6 +51,7 @@ class AddLesson extends React.Component {
     if (lesson) {
       // eslint-disable-next-line react/prop-types
       this.props.pending(lesson);
+      //  editNewLessonActions.pending(lesson);
     }
   }
 
@@ -95,6 +99,7 @@ class AddLesson extends React.Component {
         console.log(string);
         this.fileArray.push(thumbnail);
         /* Once all promises are resolved, update state with image URI array */
+        // eslint-disable-next-line func-names
         this.setState({ thumbnail: this.fileArray }, function() {
           console.log(this.state.thumbnail[0]);
         });
@@ -107,45 +112,94 @@ class AddLesson extends React.Component {
   };
 
   render() {
+    const { pending, errors } = this.state;
     return (
-      <div>
-        <h3>Add New Lesson</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Lesson Name:
-            <input
-              type="text"
-              placeholder="Enter Lesson Name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <br />
-          </label>{' '}
-          <br />
-          <br />
-          <p>Choose Lesson Tumbnail</p>
-          <input
-            type="file"
-            placeholder="Browse..."
-            accept="image/*"
-            onChange={this.fileSelectedHandler}
-          />
-          <p className="right">
-            This Lesson thubnail is used for preview.
-            <br />
-            Use an image that is esaily recognizable to you.
-          </p>
-          <br />
-          <div className="right">
-            {' '}
-           {/* <input type="submit" value="Submit" /> */}
-            <button type="submit">Save</button>
+      <>
+        <div className="title-block">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12">
+                <h3>Add new lesson</h3>
+              </div>
+            </div>
           </div>
-          <hr />
-          <Link to="/AddNoun"> Click to complete Step 1</Link>
-        </form>
-        {/* <input type="file" onChange={this.fileSelectedHandler}/> */}
-      </div>
+        </div>
+
+        <div className="add-element">
+          <form name="element_form" onSubmit={this.handleSubmit}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
+                  <FormInput
+                    label="Name"
+                    labelClassName="col-sm-2 col-form-label"
+                    name="name"
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                    placeholder="Enter Lesson Name"
+                    error={errors.word}
+                    required
+                    className="form-control"
+                    inputContainerClassName="col-sm-10"
+                  />
+                  <PreviewInput
+                    name="thumbnail"
+                    label="Thumbnail"
+                    onChange={this.fileSelectedHandler}
+                    files={this.fileArray}
+                    error={errors.fileError}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="grouped-button-bottom-bar">
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm">
+                    <Popup
+                      trigger={
+                        <button className="btn btn-default" type="button">
+                          Cancel
+                        </button>
+                      }
+                      modal
+                    >
+                      {close => (
+                        <div className="warning-modal">
+                          <div>
+                            <h4>Are you Sure?</h4>
+                            <p>
+                              No changes will be saved. please click confirm to
+                              discard all information
+                            </p>
+                            <Link to="/" className="btn btn-default">
+                              Confirm
+                            </Link>
+                            <button
+                              className="btn btn-light"
+                              type="button"
+                              onClick={() => {
+                                console.log('modal closed ');
+                                close();
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </Popup>
+                    <button type="submit" className="btn btn-primary">
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }

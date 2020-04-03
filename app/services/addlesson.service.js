@@ -7,12 +7,8 @@ export const addLessonService = {
   addLesson
 };
 
-function  addLesson(name , thumbnail) {
+function  addLesson(lesson) {
 
-  const lesson={
-    name,
-    thumbnail
-  };
   console.log('in service');
 
   return new Promise((resolve, reject) => {
