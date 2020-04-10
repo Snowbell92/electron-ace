@@ -193,7 +193,7 @@ class AddLesson extends React.Component {
                         </div>
                       )}
                     </Popup>
-                    <Link to="/addLessonElement" className="btn btn-link" >
+                    <Link to="/addLessonElement" {...this.props} className="btn btn-link" >
                       <button type="submit" className="btn btn-primary">
                         Save
                       </button>
