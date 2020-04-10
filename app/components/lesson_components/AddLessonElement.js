@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unused-state */
@@ -14,26 +15,36 @@ import PreviewInput from '../common_components/PreviewInput';
 import { editActions } from '../../actions/edit.actions';
 
 class AddLessonElement extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      lesson_name: this.props.name,
       element_word: '',
       // eslint-disable-next-line react/no-unused-state
       element_wordType: '',
+      element_category: '',
       images: [null],
-      wordTypes: ['Animals', 'Vehicles', 'People', 'Toys'],
+      Category: ['Noun', 'Verb', 'Association', 'Activity'],
       errors: {},
       pending: false,
       submitted: false
     };
     this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleSelectChangeForWordType = this.handleSelectChangeForWordType.bind(
+      this
+    );
     this.handleWordChange = this.handleWordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSelectChange(e) {
-    this.setState({ element_type: e.target.value });
+    this.setState({ element_category: e.target.value });
+  }
+
+  // eslint-disable-next-line no-dupe-class-members
+  handleSelectChangeForWordType(e) {
+    this.setState({ element_wordType: e.target.value });
   }
 
   handleWordChange(e) {
@@ -43,10 +54,13 @@ class AddLessonElement extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state.lesson_name);
     const element = {
+      lesson_name: '' || this.state.lesson_name,
       // eslint-disable-next-line react/destructuring-assignment
       word: '' || this.state.element_word,
-      wordType: '' || this.state.element_type,
+      wordType: '' || this.state.element_wordType,
+      category: '' || this.state.element_category,
       images: this.state.images
     };
     this.setState({ pending: true });
@@ -118,7 +132,7 @@ class AddLessonElement extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12">
-                <h3>Add new lesson</h3>
+                <h3>Add lesson's Element</h3>
               </div>
             </div>
           </div>
@@ -130,12 +144,25 @@ class AddLessonElement extends React.Component {
               <div className="row">
                 <div className="col-md-6">
                   <Select
-                    title="Type"
-                    name="type"
-                    options={this.state.wordTypes}
-                    value={this.state.element_type}
-                    placeholder="Select a type"
+                    title="Category "
+                    name="Category "
+                    options={this.state.Category}
+                    value={this.state.element_categoryy}
+                    placeholder="Select  Category"
                     handleChange={this.handleSelectChange}
+                  />
+                  <FormInput
+                    label="Type"
+                    labelClassName="col-sm-2 col-form-label"
+                    name="type"
+                    type="text"
+                    value={this.state.element_wordType}
+                    onChange={this.handleSelectChangeForWordType}
+                    placeholder="Enter  word Type"
+                    error={errors.word}
+                    required
+                    className="form-control"
+                    inputContainerClassName="col-sm-10"
                   />
                   <FormInput
                     label="Word"

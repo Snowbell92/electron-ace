@@ -189,70 +189,22 @@ app.on('ready', async () => {
 
   ipcMain.on('ADD_ELEMENT', (event, element) => {
     return new Promise((resolve, reject) => {
-      if (Array.isArray(element.images) && element.images.length) {
-        // image exists. save image to proper folder.create folder if necessary
-        for (let i = 0; i < element.images.length; i++) {
-          const subDir = imageDir + element.word;
-          // eslint-disable-next-line promise/always-return
-          fse
-            .ensureDir(subDir)
-            // eslint-disable-next-line promise/always-return
-            .then(data => {
-              console.log(data);
-              const fullImagePath = `${imageDir + element.word}/${
-                element.word
-              }_${i}`;
-              // Or save the image asynchronously.
-              ba64.writeImage(
-                fullImagePath,
-                element.images[i].toString(),
-                function(err) {
-                  if (err) {
-                    reject(new Error('Image could not be saved to disk'));
-                  }
-                  console.log('Image saved successfully');
-                }
-              );
-            })
-            .catch(err => {
-              console.error(err);
-              reject(
-                new Error(
-                  'something went wrong and image could not be saved to disk.'
-                )
-              );
-            });
-        }
-        db.allImages
-          .findOrCreate({
-            where: {
-              name: element.word
-            }
-          })
-          // eslint-disable-next-line promise/always-return
-          .then(data => {
-            console.log(data);
-          })
-          .catch(err => {
-            console.log(err);
-            reject(new Error('Image could not be saved to database'));
-          });
-      }
 
       db.lesson_elements
         .findOrCreate({
           where: {
             // TODO: pass proper type from parent dropdown, i.e noun/verb/associate etc
-            type: 'noun',
+           // lesson_name: element.lesson_name,
+            type: element.wordType,
             word: element.word,
-            word_category: element.wordType
+            word_category: element.category
           }
           // eslint-disable-next-line promise/always-return
         })
         .then(result => {
           console.log(result);
           resolve(result);
-          return event.sender.send('ELEMENT_ADDED', {
+          return event.sender.send('ADD_ELEMENT', {
             text: 'success',
             message: 'Element added successfully'
           });
@@ -260,7 +212,7 @@ app.on('ready', async () => {
         .catch(error => {
           console.log(error);
           reject(error);
-          return event.sender.send('ELEMENT_ADDED', {
+          return event.sender.send('ADD_ELEMENT', {
             text: 'failed',
             message: 'Element could not be added to the database'
           });
@@ -271,7 +223,8 @@ app.on('ready', async () => {
   ipcMain.on('ADD_LESSON', (event, lesson) => {
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
-    db.lesson
+    return new Promise((resolve, reject) => {
+      db.lesson
       .findOrCreate({
         where: {
           name: lesson.name,
@@ -291,11 +244,14 @@ app.on('ready', async () => {
         console.log(error);
         // eslint-disable-next-line no-undef
         reject(error);
-        return event.sender.send('ELEMENT_ADDED', {
+        return event.sender.send('LESSON_ADDED', {
           text: 'failed',
-          message: 'Element could not be added to the database'
+          message: 'Lesson could not be added to the database'
         });
       });
+
+    });
+
   });
 
   ipcMain.on('GET_LESSON_DATA', (event, lessonID) => {

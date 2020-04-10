@@ -42,7 +42,6 @@ class AddLesson extends React.Component {
     // eslint-disable-next-line spaced-comment
     event.preventDefault();
     console.log(this.state.name);
-    console.log('you are not alone');
     console.log(this.state.thumbnail[0]);
 
     const lesson = {
@@ -63,7 +62,7 @@ class AddLesson extends React.Component {
   fileArray = [];
 
   // TODO: seperate video, audio and image validation
-  validExtensions = ['.png', '.jpg', '.mp4', '.mp3'];
+  validExtensions = ['.png', '.jpg'];
 
   // eslint-disable-next-line class-methods-use-this
   hasExtension(fileName, extesions) {
@@ -194,9 +193,11 @@ class AddLesson extends React.Component {
                         </div>
                       )}
                     </Popup>
-                    <button type="submit" className="btn btn-primary">
-                      Save
-                    </button>
+                    <Link to="/addLessonElement" className="btn btn-link" >
+                      <button type="submit" className="btn btn-primary">
+                        Save
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

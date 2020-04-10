@@ -11,6 +11,7 @@ const initialState = {
 export default function editForm(state = initialState.edit, action) {
   switch (action.type) {
     case editConstants.CHANGE:
+      // eslint-disable-next-line no-case-declarations
       const newForm = { ...state.data };
       console.log('change');
       console.log(newForm);

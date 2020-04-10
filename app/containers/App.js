@@ -45,8 +45,18 @@ class App extends React.Component {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/tabView" component={TabView} />
-            <Route path="/AddLesson" component={AddLessonPage} />
-            <Route path="/addLessonElement" component={AddLessonElement} />
+            {/* <Route path="/AddLesson" component={AddLessonPage} /> */}
+            <Route
+              path="/AddLesson"
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              component={AddLessonPage}
+            />
+            <Route
+              path="/addLessonElement"
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...this.props}
+              component={AddLessonElement}
+            />
             <Route path="/AddNoun" component={AddNoun} />
             <Route path="/lesson" component={ShowLesson} />
             <Redirect from="*" to="/" />
