@@ -27,9 +27,13 @@ class AddLessonElement extends React.Component {
       Category: ['Noun', 'Verb', 'Association', 'Activity'],
       errors: {},
       pending: false,
-      submitted: false
+      submitted: false,
+      video: [null],
+      audio: [null]
     };
     this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this);
+    this.uploadAudio = this.uploadAudio.bind(this);
+    this.uploadVedio = this.uploadVedio.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSelectChangeForWordType = this.handleSelectChangeForWordType.bind(
       this
@@ -61,7 +65,9 @@ class AddLessonElement extends React.Component {
       word: '' || this.state.element_word,
       wordType: '' || this.state.element_wordType,
       category: '' || this.state.element_category,
-      images: this.state.images
+      images: this.state.images,
+      audio: this.state.audio,
+      video: this.state.video
     };
     this.setState({ pending: true });
     if (element) {
@@ -72,6 +78,14 @@ class AddLessonElement extends React.Component {
   fileObj = [];
 
   fileArray = [];
+
+  fileObjAudio = [];
+
+  fileArrayAudio = [];
+
+  fileObjVedio = [];
+
+  fileArrayVedio = [];
 
   // TODO: seperate video, audio and image validation
   validExtensions = ['.png', '.jpg', '.mp4', '.mp3'];
@@ -115,6 +129,90 @@ class AddLessonElement extends React.Component {
         /* Once all promises are resolved, update state with image URI array */
         this.setState({ images: this.fileArray }, function() {
           console.log(this.state.images);
+        });
+      },
+      // eslint-disable-next-line no-shadow
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  uploadAudio(e) {
+    /* Get files in array form */
+    const files = Array.from(e.target.files);
+    /* Map each file to a promise that resolves to an array of image URI's */
+    // eslint-disable-next-line promise/catch-or-return
+    Promise.all(
+      files.map(file => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener('load', ev => {
+            // eslint-disable-next-line react/prop-types
+            if (!this.hasExtension(file.name, this.validExtensions)) {
+              this.setState({
+                errors: { fileError: 'extension not supported' }
+              });
+              reject(new Error('Extension not supported'));
+            }
+            resolve(ev.target.result);
+          });
+          reader.addEventListener('error', reject);
+          reader.readAsDataURL(file);
+        });
+      })
+    ).then(
+      // eslint-disable-next-line promise/always-return
+      audio => {
+        // eslint-disable-next-line promise/always-return
+        const string = audio.toString().split(';base64,')[0];
+        console.log(string);
+        this.fileArrayAudio.push(audio);
+        /* Once all promises are resolved, update state with image URI array */
+        this.setState({ audio: this.fileArrayAudio }, function() {
+          console.log(this.state.audio);
+        });
+      },
+      // eslint-disable-next-line no-shadow
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  uploadVedio(e) {
+    /* Get files in array form */
+    const files = Array.from(e.target.files);
+    /* Map each file to a promise that resolves to an array of image URI's */
+    // eslint-disable-next-line promise/catch-or-return
+    Promise.all(
+      files.map(file => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener('load', ev => {
+            // eslint-disable-next-line react/prop-types
+            if (!this.hasExtension(file.name, this.validExtensions)) {
+              this.setState({
+                errors: { fileError: 'extension not supported' }
+              });
+              reject(new Error('Extension not supported'));
+            }
+            resolve(ev.target.result);
+          });
+          reader.addEventListener('error', reject);
+          reader.readAsDataURL(file);
+        });
+      })
+    ).then(
+      // eslint-disable-next-line promise/always-return
+      video => {
+        // eslint-disable-next-line promise/always-return
+        const string = video.toString().split(';base64,')[0];
+        console.log(string);
+        this.fileArray.push(video);
+        /* Once all promises are resolved, update state with image URI array */
+        this.setState({ video: this.fileArrayVideo }, function() {
+          console.log(this.state.video);
         });
       },
       // eslint-disable-next-line no-shadow
@@ -183,6 +281,22 @@ class AddLessonElement extends React.Component {
                     onChange={this.uploadMultipleFiles}
                     files={this.fileArray}
                     error={errors.fileError}
+                  />
+
+                  <PreviewInput
+                    name="audio"
+                    label="Audio"
+                    onChange={this.uploadAudio}
+                    file={this.fileArrayAudio}
+                    erroe={errors.fileError}
+                  />
+
+                  <PreviewInput
+                    name="vedio"
+                    label="Vedio"
+                    onChange={this.uploadVedio}
+                    file={this.fileArrayVedio}
+                    erroe={errors.fileError}
                   />
                 </div>
               </div>

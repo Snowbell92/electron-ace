@@ -48,9 +48,9 @@ class ShowLesson extends React.Component {
                 <h3>{lessonData.wordName}</h3>
                 <div className="slideshow">
                   <div className="slide-container">
-                    {/*<Slide {...this.properties}>*/}
-                      {/* eslint-disable-next-line react/prop-types */}
-                      {/*{lessonData.slideImages.map(slides => (
+                    {/* <Slide {...this.properties}> */}
+                    {/* eslint-disable-next-line react/prop-types */}
+                    {/* {lessonData.slideImages.map(slides => (
                         <div className="each-slide">
                           <div
                             style={{
@@ -59,8 +59,8 @@ class ShowLesson extends React.Component {
                             }}
                           />
                         </div>
-                      ))}*/}
-                    {/*</Slide>*/}
+                      ))} */}
+                    {/* </Slide> */}
                   </div>
                 </div>
               </div>
