@@ -9,8 +9,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Popup from 'reactjs-popup';
 import ReactDOM from 'react-dom';
+import { Route, Switch, Redirect } from "react-router-dom";
+import { RoutedTabs, NavTab } from "react-router-tabs";
 import { Component } from 'react';
 import './add_lesson/AddLession.css';
+import openLessonComponent from './openLesson'
 
 class TabView extends Component {
   render() {
@@ -18,19 +21,18 @@ class TabView extends Component {
 
     return (
       <div className="left">
-        <Tabs headers={headers}>
-          <Tab>
-            <div>
-              <h2>Open Lesson</h2>
-            </div>
-          </Tab>
-          <Tab>
-            <Link to="/AddLesson"> Click here</Link>
-          </Tab>
-          <Tab>
-            <h2>Add Lesson Element</h2>
-          </Tab>
-        </Tabs>
+
+      <RoutedTabs
+       // startPathWith={match.path}
+        tabClassName="tab-link"
+        activeTabClassName="active"
+      >
+
+          <NavTab className='navBarLink' to="/lesson">Open Lesson </NavTab>
+          <NavTab className='navBarLink' to="/AddLesson">Add New Lesson </NavTab>
+          <NavTab className='navBarLink' to="/addLessonElement">Add Lesson Element  </NavTab>
+
+      </RoutedTabs>
       </div>
     );
   }

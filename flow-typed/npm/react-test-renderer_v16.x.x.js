@@ -1,5 +1,5 @@
-// flow-typed signature: d9b7293e86f8a18d32b6324dadea776d
-// flow-typed version: c6154227d1/react-test-renderer_v16.x.x/flow_>=v0.104.x
+// flow-typed signature: 54c4fc4fc023f66e89e60d3a77f009cf
+// flow-typed version: fce74493f0/react-test-renderer_v16.x.x/flow_>=v0.104.x
 
 // Type definitions for react-test-renderer 16.x.x
 // Ported from: https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-test-renderer
@@ -64,7 +64,7 @@ declare module "react-test-renderer" {
     options?: TestRendererOptions
   ): ReactTestRenderer;
 
-  declare function act(callback: () => void): Thenable;
+  declare function act(callback: () => void | Promise<void>): Thenable;
 }
 
 declare module "react-test-renderer/shallow" {

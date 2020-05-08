@@ -1,3 +1,8 @@
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable new-cap */
 /* eslint-disable prettier/prettier */
 /* eslint global-require: off */
 
@@ -11,9 +16,18 @@
  *
  * @flow
  */
-import { app, BrowserWindow, ipcMain } from 'electron';
-import { autoUpdater } from 'electron-updater';
+import {
+  app,
+  BrowserWindow,
+  ipcMain
+} from 'electron';
+import {
+  autoUpdater
+} from 'electron-updater';
 import log from 'electron-log';
+import {
+  promises
+} from 'dns';
 import MenuBuilder from './menu';
 
 const path = require('path');
@@ -22,6 +36,9 @@ const ba64 = require('ba64');
 const db = require('../db/db');
 
 const imageDir = 'app/assets/images/';
+const videoDir = 'app/assets/videos/';
+const audioDir = 'app/assets/audioes/';
+const thumbnailDir = 'app/assets/thumbnails/';
 
 export default class AppUpdater {
   constructor() {
@@ -144,7 +161,11 @@ app.on('ready', async () => {
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
     db.teacher
-      .findOne({ where: { username: teacher.username } })
+      .findOne({
+        where: {
+          username: teacher.username
+        }
+      })
       .then(entry => {
         // entry will be the first entry of the teacher table with the username 'userame' || null
         // eslint-disable-next-line promise/always-return
@@ -189,12 +210,65 @@ app.on('ready', async () => {
 
   ipcMain.on('ADD_ELEMENT', (event, element) => {
     return new Promise((resolve, reject) => {
+      if (Array.isArray(element.images) && element.images.length) {
+        // image exists. save image to proper folder.create folder if necessary
+        for (let i = 0; i < element.images.length; i++) {
+          const subDir = imageDir + element.word;
+          // eslint-disable-next-line promise/always-return
+          fse
+            .ensureDir(subDir)
+            // eslint-disable-next-line promise/always-return
+            .then(data => {
+              console.log(data);
+              const fullImagePath = `${imageDir + element.word}/${
+                element.word
+              }_${i}`;
+              // Or save the image asynchronously.
+              ba64.writeImage(
+                fullImagePath,
+                element.images[i].toString(),
+                function(err) {
+                  if (err) {
+                    reject(new Error('Image could not be saved to disk'));
+                  }
+                  console.log('Image saved successfully');
+                }
+              );
+            })
+            .catch(err => {
+              console.error(err);
+              reject(
+                new Error(
+                  'something went wrong and image could not be saved to disk.'
+                )
+              );
+            });
+        }
+        db.allImages
+          .findOrCreate({
+            where: {
+              name: element.word,
+            //  lesson_name: element.lesson_name,
+            //  category: element.category
+            }
+          })
+          // eslint-disable-next-line promise/always-return
+          .then(data => {
+            console.log(data);
+          })
+          .catch(err => {
+            console.log(err);
+            reject(new Error('Image could not be saved to database'));
+          });
+      }
+
+
 
       db.lesson_elements
         .findOrCreate({
           where: {
             // TODO: pass proper type from parent dropdown, i.e noun/verb/associate etc
-           // lesson_name: element.lesson_name,
+            lesson_name: element.lesson_name,
             type: element.wordType,
             word: element.word,
             word_category: element.category
@@ -225,34 +299,69 @@ app.on('ready', async () => {
     // eslint-disable-next-line promise/catch-or-return
     return new Promise((resolve, reject) => {
       db.lesson
-      .findOrCreate({
-        where: {
-          name: lesson.name,
-          thumbnail:lesson.thumbnail
-        }
-      })
-      // eslint-disable-next-line no-shadow,promise/always-return
-      .then(result => {
-        console.log(result);
-        // eslint-disable-next-line no-undef
-        resolve(result);
-        return event.sender.send('LESSON_ADDED', {
-          text: 'success',
-          message: 'Lesson added successfully'
+        .findOrCreate({
+          where: {
+            name: lesson.name,
+            thumbnail: lesson.thumbnail
+          }
+        })
+        // eslint-disable-next-line no-shadow,promise/always-return
+        .then(result => {
+          console.log(result);
+          // eslint-disable-next-line no-undef
+          resolve(result);
+          return event.sender.send('LESSON_ADDED', {
+            text: 'success',
+            message: 'Lesson added successfully'
+          });
+        }).catch(error => {
+          console.log(error);
+          // eslint-disable-next-line no-undef
+          reject(error);
+          return event.sender.send('LESSON_ADDED', {
+            text: 'failed',
+            message: 'Lesson could not be added to the database'
+          });
         });
-      }).catch(error => {
-        console.log(error);
-        // eslint-disable-next-line no-undef
-        reject(error);
-        return event.sender.send('LESSON_ADDED', {
-          text: 'failed',
-          message: 'Lesson could not be added to the database'
-        });
-      });
 
     });
 
   });
+
+  // eslint-disable-next-line no-unused-vars
+  ipcMain.on('FIND_ALL_LESSON', (event) => {
+
+    // eslint-disable-next-line no-undef
+    return new promise((resolve, reject) => {
+      db.lesson.findAll({
+        // eslint-disable-next-line no-undef
+        attributes: [name, thumbnail]
+      }).then(lessonInfo => {
+        let name= [];
+         name = lessonInfo.getDataValue('name');
+        let thumbnail = [];
+         thumbnail = lessonInfo.getValue('thumbnail');
+
+        resolve(lessonInfo);
+        return event.sender.send('FIND_ALL_LESSON', {
+          text: 'success',
+          message: 'Lesson Feteched successfully',
+          lessons: {
+            Lname: name,
+            Lthumnail: thumbnail
+          }
+        });
+      }).catch(err => {
+        console.log(err);
+        reject(err);
+        return event.sender.send('FIND_ALL_LESSON', {
+          text: 'failed',
+          message: 'Not Found'
+        });
+      });
+    });
+  });
+
 
   ipcMain.on('GET_LESSON_DATA', (event, lessonID) => {
     return new Promise((resolve, reject) => {
@@ -284,4 +393,5 @@ app.on('ready', async () => {
         });
     });
   });
+
 });

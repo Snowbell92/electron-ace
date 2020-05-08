@@ -18,7 +18,7 @@ class AddLessonElement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lesson_name: this.props.name,
+      lesson_name: this.props.location.state.name,
       element_word: '',
       // eslint-disable-next-line react/no-unused-state
       element_wordType: '',
@@ -301,10 +301,14 @@ class AddLessonElement extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="grouped-button-bottom-bar">
               <div className="container">
                 <div className="row">
                   <div className="col-sm">
+                    <div className="btn btn-primary">
+                      <Link to="/">Back </Link>
+                    </div>
                     <Popup
                       trigger={
                         <button className="btn btn-default" type="button">

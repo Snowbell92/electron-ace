@@ -1,4 +1,4 @@
-hr { 
+#hr {
     display: block;
     margin-before: 0.5em;
     margin-after: 0.5em;
@@ -15,4 +15,12 @@ hr {
 
 .right{
     text-align: right;
+}
+#space{
+  word-spacing: 60px;
+
+}
+
+.navBarLink {
+  margin: 20px;
 }

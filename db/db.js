@@ -10,7 +10,7 @@ const db = {};
 
 db.lesson = sequelize.import(path.join(__dirname, '/models/lesson.js'));
 db.lesson_elements = sequelize.import(
-  path.join(__dirname, '/models/lesson_elements.js')
+  path.join(__dirname, '/models/lesson_element.js')
 );
 db.student = sequelize.import(path.join(__dirname, '/models/student.js'));
 db.teacher = sequelize.import(path.join(__dirname, '/models/teacher.js'));

@@ -1,9 +1,11 @@
+/* eslint-disable func-names */
+/* eslint-disable camelcase */
 module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line camelcase
   const Lesson_Elements = sequelize.define(
     'Lesson_Elements',
     {
-     // lesson_name: DataTypes.STRING,
+      // lesson_name: DataTypes.STRING,
       type: DataTypes.STRING,
       word: DataTypes.STRING,
       word_category: DataTypes.STRING

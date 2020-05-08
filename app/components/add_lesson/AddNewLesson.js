@@ -194,9 +194,12 @@ class AddLesson extends React.Component {
                       )}
                     </Popup>
                     <Link
-                      to="/addLessonElement"
-                      // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...this.props}
+                      to={{
+                        pathname: '/addLessonElement',
+                        state: {
+                          name: this.state.name
+                        }
+                      }}
                       className="btn btn-link"
                     >
                       <button type="submit" className="btn btn-primary">
