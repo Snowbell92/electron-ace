@@ -1,25 +1,53 @@
-/* eslint-disable no-useless-constructor */
+/* eslint-disable prettier/prettier */
+/* eslint-disable import/no-duplicates */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable no-unused-vars */
-import React, { Fragment } from 'react';
+/* eslint-disable import/no-unresolved */
+import { Tabs, Tab } from 'react-tab-view';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { openLessonAction } from '../actions/openLesson.action';
+import Popup from 'reactjs-popup';
+import ReactDOM from 'react-dom';
+import { Route, Switch, Redirect } from "react-router-dom";
+import { RoutedTabs, NavTab } from "react-router-tabs";
+import { Component } from 'react';
 
-class openLessonComponent extends React.component {
-  constructor(props) {
-    super(props);
-  }
 
+class openLessonComponent extends Component {
   render() {
+    const headers = ['Open Lesson', 'Add New Lesson', 'Add Lesson Element'];
+
     return (
-      <div>
+      <div className="left">
         <h>open Lesson section</h>
         <p>kaj choltese eikane puzzle r mcq quize merge kora hobe</p>
-      </div>
+     </div>
     );
   }
 }
 
+function mapState(state) {
+  const { fetchLesson } = state.editForm;
+  return { fetchLesson };
+}
+
+const actionCreators = {
+  fetchLesson: null
+};
+
+const connectedElementForm = connect(
+  mapState,
+  actionCreators
+)(openLessonComponent);
+
+// eslint-disable-next-line import/prefer-default-export
+export { connectedElementForm as openLessonPage };
+
+
+/*
 export default openLessonComponent;
+
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable no-unused-vars */

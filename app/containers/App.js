@@ -16,6 +16,7 @@ import { AddLessonElement } from '../components/lesson_components/AddLessonEleme
 import ShowLesson from '../components/teaching_components/showLesson';
 import TabView from '../components/TabView';
 import AddNoun from '../components/add_lesson/AddNoun';
+import openLessonComponent from '../components/openLesson';
 // eslint-disable-next-line no-unused-vars
 
 class App extends React.Component {
@@ -49,7 +50,7 @@ class App extends React.Component {
             <Route path="/AddLesson" component={AddLessonPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
             <Route path="/AddNoun" component={AddNoun} />
-            <Route path="/lesson" component={ShowLesson} />
+            <Route path="/lesson" component={openLessonComponent} />
             <Redirect from="*" to="/" />
           </Switch>
         </Router>
