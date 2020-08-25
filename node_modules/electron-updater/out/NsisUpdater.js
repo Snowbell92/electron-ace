@@ -107,11 +107,19 @@ function _url() {
   return data;
 }
 
+function _zlib() {
+  const data = require("zlib");
+
+  _zlib = function () {
+    return data;
+  };
+
+  return data;
+}
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-let pako = null;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 class NsisUpdater extends _BaseUpdater().BaseUpdater {
   constructor(options, app) {
@@ -128,6 +136,10 @@ class NsisUpdater extends _BaseUpdater().BaseUpdater {
       downloadUpdateOptions,
       fileInfo,
       task: async (destinationFile, downloadOptions, packageFile, removeTempDirIfAny) => {
+        if (hasQuotes(destinationFile) || packageFile != null && hasQuotes(packageFile)) {
+          throw (0, _builderUtilRuntime().newError)(`destinationFile or packageFile contains illegal chars`, "ERR_UPDATER_ILLEGAL_FILE_NAME");
+        }
+
         const packageInfo = fileInfo.packageInfo;
         const isWebInstaller = packageInfo != null && packageFile != null;
 
@@ -242,7 +254,7 @@ class NsisUpdater extends _BaseUpdater().BaseUpdater {
       }
 
       const newBlockMapUrl = (0, _main().newUrlFromBase)(`${fileInfo.url.pathname}.blockmap`, fileInfo.url);
-      const oldBlockMapUrl = (0, _main().newUrlFromBase)(`${fileInfo.url.pathname.replace(new RegExp(downloadUpdateOptions.updateInfoAndProvider.info.version, "g"), this.currentVersion.version)}.blockmap`, fileInfo.url);
+      const oldBlockMapUrl = (0, _main().newUrlFromBase)(`${fileInfo.url.pathname.replace(new RegExp(downloadUpdateOptions.updateInfoAndProvider.info.version, "g"), this.app.version)}.blockmap`, fileInfo.url);
 
       this._logger.info(`Download block maps (old: "${oldBlockMapUrl.href}", new: ${newBlockMapUrl.href})`);
 
@@ -256,14 +268,8 @@ class NsisUpdater extends _BaseUpdater().BaseUpdater {
           throw new Error(`Blockmap "${url.href}" is empty`);
         }
 
-        if (pako == null) {
-          pako = require("pako");
-        }
-
         try {
-          return JSON.parse(pako.inflate(data, {
-            to: "string"
-          }));
+          return JSON.parse((0, _zlib().inflateSync)(data).toString());
         } catch (e) {
           throw new Error(`Cannot parse blockmap "${url.href}", error: ${e}, raw data: ${data}`);
         }
@@ -344,6 +350,10 @@ async function _spawn(exe, args) {
       reject(error);
     }
   });
+}
+
+function hasQuotes(name) {
+  return name.includes("'") || name.includes('"') || name.includes('`');
 } 
 // __ts-babel@6.0.4
 //# sourceMappingURL=NsisUpdater.js.map

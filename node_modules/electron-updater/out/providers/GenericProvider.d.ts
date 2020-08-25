@@ -7,7 +7,7 @@ export declare class GenericProvider extends Provider<UpdateInfo> {
     private readonly updater;
     private readonly baseUrl;
     constructor(configuration: GenericServerOptions, updater: AppUpdater, runtimeOptions: ProviderRuntimeOptions);
-    private readonly channel;
+    private get channel();
     getLatestVersion(): Promise<UpdateInfo>;
     resolveFiles(updateInfo: UpdateInfo): Array<ResolvedUpdateFileInfo>;
 }

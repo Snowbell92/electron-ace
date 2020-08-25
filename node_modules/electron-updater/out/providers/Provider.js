@@ -93,7 +93,9 @@ class Provider {
         result.headers = headers;
       }
     } else {
-      result.headers = headers == null ? this.requestHeaders : Object.assign(Object.assign({}, this.requestHeaders), headers);
+      result.headers = headers == null ? this.requestHeaders : { ...this.requestHeaders,
+        ...headers
+      };
     }
 
     (0, _builderUtilRuntime().configureRequestUrl)(url, result);
@@ -172,9 +174,9 @@ function resolveFiles(updateInfo, baseUrl, pathTransformer = p => p) {
   const packageInfo = packages == null ? null : packages[process.arch] || packages.ia32;
 
   if (packageInfo != null) {
-    result[0].packageInfo = Object.assign(Object.assign({}, packageInfo), {
+    result[0].packageInfo = { ...packageInfo,
       path: (0, _main().newUrlFromBase)(pathTransformer(packageInfo.path), baseUrl).href
-    });
+    };
   }
 
   return result;

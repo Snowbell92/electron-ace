@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react';
 import { Slide } from 'react-slideshow-image';
 import { connect } from 'react-redux';
@@ -7,7 +6,7 @@ import { showLessonActions } from '../../actions/showLesson.actions';
 class ShowLesson extends React.Component {
   componentDidMount() {
     // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-    this.props.dispatch(showLessonActions.fetchLesson(1));
+    this.props.dispatch(showLessonActions.fetchLesson('bird'));
   }
 
   properties = {
@@ -28,8 +27,10 @@ class ShowLesson extends React.Component {
     }
     return (
       <>
-        {console.log('comp')}
-        {console.log(lessonData)};
+        console.log('comp');
+        console.log(this.props.isLoaded);
+        console.log(this.props.isLoading);
+        console.log(this.props.lessonData);
         <div className="title-block">
           <div className="container">
             <div className="row">
@@ -46,12 +47,12 @@ class ShowLesson extends React.Component {
             <div className="row">
               <div className="col-md-6">
                 {/* eslint-disable-next-line react/prop-types */}
-                <h3>{lessonData.wordName}</h3>
+                {/*<h3>{lessonData.wordName}</h3>*/}
                 <div className="slideshow">
                   <div className="slide-container">
-                    {/* <Slide {...this.properties}> */}
-                    {/* eslint-disable-next-line react/prop-types */}
-                    {/* {lessonData.slideImages.map(slides => (
+                    {/*<Slide {...this.properties}>*/}
+                      {/* eslint-disable-next-line react/prop-types */}
+                      {/*{lessonData.slideImages.map(slides => (
                         <div className="each-slide">
                           <div
                             style={{
@@ -60,8 +61,8 @@ class ShowLesson extends React.Component {
                             }}
                           />
                         </div>
-                      ))} */}
-                    {/* </Slide> */}
+                      ))}*/}
+                    {/*</Slide>*/}
                   </div>
                 </div>
               </div>
@@ -76,6 +77,7 @@ class ShowLesson extends React.Component {
 const mapStateToProps = state => ({
   isLoading: state.lessonData.isLoading,
   isLoaded: state.lessonData.isLoaded,
-  lessonData: state.lessonData.data
+  lessonData: state.lessonData
 });
+
 export default connect(mapStateToProps)(ShowLesson);

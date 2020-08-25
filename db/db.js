@@ -3,11 +3,20 @@ const path = require('path');
 
 const sequelize = new Sequelize('database', null, null, {
   dialect: 'sqlite',
+  retry: {
+    match: [/SQLITE_BUSY/],
+    name: 'query',
+    max: 5
+  },
+  pool: {
+    maxactive: 1,
+    max: 5,
+    min: 0,
+    idle: 20000
+  },
   storage: './database.sqlite3'
 });
-
 const db = {};
-
 db.lesson = sequelize.import(path.join(__dirname, '/models/lesson.js'));
 db.lesson_elements = sequelize.import(
   path.join(__dirname, '/models/lesson_element.js')

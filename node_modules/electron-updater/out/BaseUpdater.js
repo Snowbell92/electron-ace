@@ -37,12 +37,12 @@ class BaseUpdater extends _AppUpdater().AppUpdater {
   }
 
   executeDownload(taskOptions) {
-    return super.executeDownload(Object.assign(Object.assign({}, taskOptions), {
+    return super.executeDownload({ ...taskOptions,
       done: async event => {
         this.dispatchUpdateDownloaded(event);
         this.addQuitHandler();
       }
-    }));
+    });
   } // must be sync (because quit even handler is not async)
 
 

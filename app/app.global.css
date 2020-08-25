@@ -4,7 +4,7 @@
  */
 /*@import '~@fortawesome/fontawesome-free/css/all.css';*/
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "~react-slideshow-image/dist/style.bundle.css";
+@import "~react-slideshow-image/dist/styles.css";
 
 body {
   margin:0;

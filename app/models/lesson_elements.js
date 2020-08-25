@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   const Lesson_Elements = sequelize.define(
     'Lesson_Elements',
     {
-      // lesson_name: DataTypes.STRING,
+      lesson_name: DataTypes.STRING,
       type: DataTypes.STRING,
       word: DataTypes.STRING,
       word_category: DataTypes.STRING

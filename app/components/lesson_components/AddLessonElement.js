@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
@@ -23,7 +24,7 @@ class AddLessonElement extends React.Component {
       // eslint-disable-next-line react/no-unused-state
       element_wordType: '',
       element_category: '',
-      images: [null],
+      images: [],
       Category: ['Noun', 'Verb', 'Association', 'Activity'],
       errors: {},
       pending: false,
@@ -40,6 +41,9 @@ class AddLessonElement extends React.Component {
     );
     this.handleWordChange = this.handleWordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addImageMore = this.addImageMore.bind(this);
+    this.addImagePreview = this.addImagePreview.bind(this);
+    this.removeImagePreview = this.removeImagePreview.bind(this);
   }
 
   handleSelectChange(e) {
@@ -58,7 +62,10 @@ class AddLessonElement extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   handleSubmit(e) {
     e.preventDefault();
+   //uploadMultipleFiles();
     console.log(this.state.lesson_name);
+    console.log(this.state.images);
+
     const element = {
       lesson_name: '' || this.state.lesson_name,
       // eslint-disable-next-line react/destructuring-assignment
@@ -97,10 +104,12 @@ class AddLessonElement extends React.Component {
   }
 
   uploadMultipleFiles(e) {
+    console.log(this.fileArray);
     /* Get files in array form */
     const files = Array.from(e.target.files);
     /* Map each file to a promise that resolves to an array of image URI's */
     // eslint-disable-next-line promise/catch-or-return
+   // const files = this.state.images;
     Promise.all(
       files.map(file => {
         return new Promise((resolve, reject) => {
@@ -221,6 +230,50 @@ class AddLessonElement extends React.Component {
       }
     );
   }
+  addImageMore(e){
+    this.setState({images : [...this.state.images,""]});
+  }
+
+  addImagePreview(e,index) {
+
+
+      const file =e.target.value;
+      console.log('okay');
+      console.log(file);
+      const reader = new FileReader();
+      reader.addEventListener('load', (event) => {
+      img.src = event.target.result;
+     });
+     reader.readAsDataURL(e.target.value);
+     this.state.images[index]=reader.result;
+     this.setState({images:this.state.images});
+
+    /*const reader = new FileReader();
+    const file = e.target.value.reader.addEventListener('load', ev => {
+      // eslint-disable-next-line react/prop-types
+      if (!this.hasExtension(file.name, this.validExtensions)) {
+        this.setState({
+          errors: { fileError: 'extension not supported' }
+        });
+
+      }
+    });
+    this.state.images[index]=file;
+
+
+    //set the changed state
+    this.setState({images:this.state.images});*/
+  }
+
+ removeImagePreview(index) {
+  this.state.images.splice(index,1);
+  console.log(this.state.images,"SSS");
+
+
+ //set the changed state
+  this.setState({images:this.state.images});
+
+  }
 
   render() {
     const { pending, errors } = this.state;
@@ -275,13 +328,43 @@ class AddLessonElement extends React.Component {
                     className="form-control"
                     inputContainerClassName="col-sm-10"
                   />
-                  <PreviewInput
+
+
+
+
+                    <PreviewInput
                     name="files"
                     label="Picture"
                     onChange={this.uploadMultipleFiles}
                     files={this.fileArray}
                     error={errors.fileError}
                   />
+
+
+                {/*<label>Picture</label> */}
+                  <hr />
+                  {
+                       this.state.images.map((image , index)=>{
+                        return(
+                        <div key={index}>
+                        <PreviewInput
+                        name={index}
+                        label="Picture"
+                        onChange={this.uploadMultipleFiles}
+                        files={this.fileArray}
+                        error={errors.fileError}
+                      />
+
+                         {/* <input type='file' onChange={(e)=>this.addImagePreview(e,index)} value={image} /> */}
+                          <button onClick={(e)=>this.removeImagePreview(index)}>Remove</button><br/>
+                       </div>
+              )
+            })
+          }
+
+
+                  <button onClick={(e)=>this.addImageMore(e)}>Add image</button>
+
 
                   <PreviewInput
                     name="audio"

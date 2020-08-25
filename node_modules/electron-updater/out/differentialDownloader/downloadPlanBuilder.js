@@ -16,13 +16,12 @@ exports.OperationKind = OperationKind;
 function computeOperations(oldBlockMap, newBlockMap, logger) {
   const nameToOldBlocks = buildBlockFileMap(oldBlockMap.files);
   const nameToNewBlocks = buildBlockFileMap(newBlockMap.files);
-  const oldEntryMap = buildEntryMap(oldBlockMap.files);
   let lastOperation = null; // for now only one file is supported in block map
 
   const blockMapFile = newBlockMap.files[0];
   const operations = [];
   const name = blockMapFile.name;
-  const oldEntry = oldEntryMap.get(name);
+  const oldEntry = nameToOldBlocks.get(name);
 
   if (oldEntry == null) {
     // new file (unrealistic case for now, because in any case both blockmap contain the only file named as "file")
@@ -96,7 +95,8 @@ function validateAndAdd(operation, operations, checksum, index) {
   }
 
   operations.push(operation);
-}
+} // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+
 
 function buildChecksumMap(file, fileOffset, logger) {
   const checksumToOffset = new Map();
@@ -124,16 +124,6 @@ function buildChecksumMap(file, fileOffset, logger) {
     checksumToOffset,
     checksumToOldSize: checksumToSize
   };
-}
-
-function buildEntryMap(list) {
-  const result = new Map();
-
-  for (const item of list) {
-    result.set(item.name, item);
-  }
-
-  return result;
 }
 
 function buildBlockFileMap(list) {

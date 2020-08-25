@@ -21,7 +21,7 @@ export declare class DataSplitter extends Writable {
     private remainingPartDataCount;
     private readonly boundaryLength;
     constructor(out: Writable, options: PartListDataTask, partIndexToTaskIndex: Map<number, number>, boundary: string, partIndexToLength: Array<number>, finishHandler: () => any);
-    readonly isFinished: boolean;
+    get isFinished(): boolean;
     _write(data: Buffer, encoding: string, callback: (error?: Error) => void): void;
     private handleData;
     private copyExistingData;

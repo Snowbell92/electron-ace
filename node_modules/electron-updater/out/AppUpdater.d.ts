@@ -48,23 +48,25 @@ export declare abstract class AppUpdater extends EventEmitter {
     /**
      * Get the update channel. Not applicable for GitHub. Doesn't return `channel` from the update configuration, only if was previously set.
      */
+    get channel(): string | null;
     /**
-    * Set the update channel. Not applicable for GitHub. Overrides `channel` in the update configuration.
-    *
-    * `allowDowngrade` will be automatically set to `true`. If this behavior is not suitable for you, simple set `allowDowngrade` explicitly after.
-    */
-    channel: string | null;
+     * Set the update channel. Not applicable for GitHub. Overrides `channel` in the update configuration.
+     *
+     * `allowDowngrade` will be automatically set to `true`. If this behavior is not suitable for you, simple set `allowDowngrade` explicitly after.
+     */
+    set channel(value: string | null);
     /**
      *  The request headers.
      */
     requestHeaders: OutgoingHttpHeaders | null;
     protected _logger: Logger;
-    readonly netSession: Session;
+    get netSession(): Session;
     /**
      * The logger. You can pass [electron-log](https://github.com/megahertz/electron-log), [winston](https://github.com/winstonjs/winston) or another logger with the following interface: `{ info(), warn(), error() }`.
      * Set it to `null` if you would like to disable a logging feature.
      */
-    logger: Logger | null;
+    get logger(): Logger | null;
+    set logger(value: Logger | null);
     /**
      * For type safety you can use signals, e.g. `autoUpdater.signals.updateDownloaded(() => {})` instead of `autoUpdater.on('update-available', () => {})`
      */
@@ -74,7 +76,7 @@ export declare abstract class AppUpdater extends EventEmitter {
      * test only
      * @private
      */
-    updateConfigPath: string | null;
+    set updateConfigPath(value: string | null);
     private clientPromise;
     protected readonly stagingUserIdPromise: Lazy<string>;
     private checkForUpdatesPromise;

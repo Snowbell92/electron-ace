@@ -14,11 +14,11 @@ export declare abstract class Provider<T extends UpdateInfo> {
     private requestHeaders;
     protected readonly executor: HttpExecutor<any>;
     protected constructor(runtimeOptions: ProviderRuntimeOptions);
-    readonly isUseMultipleRangeRequest: boolean;
+    get isUseMultipleRangeRequest(): boolean;
     private getChannelFilePrefix;
     protected getDefaultChannelName(): string;
     protected getCustomChannelName(channel: string): string;
-    readonly fileExtraDownloadHeaders: OutgoingHttpHeaders | null;
+    get fileExtraDownloadHeaders(): OutgoingHttpHeaders | null;
     setRequestHeaders(value: OutgoingHttpHeaders | null): void;
     abstract getLatestVersion(): Promise<T>;
     abstract resolveFiles(updateInfo: UpdateInfo): Array<ResolvedUpdateFileInfo>;

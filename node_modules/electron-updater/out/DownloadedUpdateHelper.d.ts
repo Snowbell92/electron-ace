@@ -9,10 +9,10 @@ export declare class DownloadedUpdateHelper {
     private fileInfo;
     constructor(cacheDir: string);
     private _downloadedFileInfo;
-    readonly downloadedFileInfo: CachedUpdateInfo | null;
-    readonly file: string | null;
-    readonly packageFile: string | null;
-    readonly cacheDirForPendingUpdate: string;
+    get downloadedFileInfo(): CachedUpdateInfo | null;
+    get file(): string | null;
+    get packageFile(): string | null;
+    get cacheDirForPendingUpdate(): string;
     validateDownloadedPath(updateFile: string, updateInfo: UpdateInfo, fileInfo: ResolvedUpdateFileInfo, logger: Logger): Promise<string | null>;
     setDownloadedFile(downloadedFile: string, packageFile: string | null, versionInfo: UpdateInfo, fileInfo: ResolvedUpdateFileInfo, updateFileName: string, isSaveCache: boolean): Promise<void>;
     clear(): Promise<void>;

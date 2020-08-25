@@ -1,3 +1,4 @@
+/* eslint-disable promise/catch-or-return */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
@@ -297,7 +298,8 @@ app.on('ready', async () => {
   ipcMain.on('ADD_LESSON', (event, lesson) => {
     // run the sequelize query
     // eslint-disable-next-line promise/catch-or-return
-    return new Promise((resolve, reject) => {
+     return new Promise((resolve, reject) => {
+      // eslint-disable-next-line promise/catch-or-return
       db.lesson
         .findOrCreate({
           where: {
@@ -331,54 +333,69 @@ app.on('ready', async () => {
   // eslint-disable-next-line no-unused-vars
   ipcMain.on('FIND_ALL_LESSON', (event) => {
 
-    // eslint-disable-next-line no-undef
-    return new promise((resolve, reject) => {
-      db.lesson.findAll({
-        // eslint-disable-next-line no-undef
-        attributes: [name, thumbnail]
-      }).then(lessonInfo => {
-        let name= [];
-         name = lessonInfo.getDataValue('name');
-        let thumbnail = [];
-         thumbnail = lessonInfo.getValue('thumbnail');
-
-        resolve(lessonInfo);
-        return event.sender.send('FIND_ALL_LESSON', {
-          text: 'success',
-          message: 'Lesson Feteched successfully',
-          lessons: {
-            Lname: name,
-            Lthumnail: thumbnail
-          }
+    return new Promise((resolve, reject) => {
+      db.lesson
+        .findAll({ raw:true })
+        .then(lessonData =>  {
+          resolve(lessonData);
+          // console.log(lessonData);
+          return event.sender.send('ALL_LESSON_FETCHED', {
+            text: 'success',
+            message: 'lesson found',
+            // lessons:result
+            lessons : lessonData
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+          return event.sender.send('ELEMENT_ADDED', {
+            text: 'failed',
+            message: 'Not Found'
+          });
         });
-      }).catch(err => {
-        console.log(err);
-        reject(err);
-        return event.sender.send('FIND_ALL_LESSON', {
-          text: 'failed',
-          message: 'Not Found'
-        });
-      });
     });
   });
 
 
-  ipcMain.on('GET_LESSON_DATA', (event, lessonID) => {
+  ipcMain.on('GET_LESSON_DATA', (event, lessonName) => {
+
+   // console.log(db.lesson_element);
     return new Promise((resolve, reject) => {
+      // console.log('keno mile na ');
+      // console.log(db.lesson);
       db.lesson_elements
-        .findByPk(lessonID)
+      .findAll({
+         where: {
+              lesson_name: lessonName
+            }
+          }).then(info => {
+              return JSON.stringify(info);
+          }).then(jsonData => {
+            const obj = JSON.parse(jsonData);
+            return obj;
+          })
         .then(lessonData => {
-          const word = lessonData.getDataValue('word');
-          const dir = path.join(imageDir, word);
-          const images = fse.readdirSync(dir, (err, files) => {
-            return files;
-          });
+          console.log(lessonData);
+          console.log(lessonData[0].word);
+          const size =Object.keys(lessonData).length;
+          let i ;
+          const str = [];
+          const images =[];
+          for (i=0 ; i<size ; i++){
+            str.push(lessonData[i].word);
+            const dir = path.join(imageDir, str[i]);
+            images.push(fse.readdirSync(dir, (err, files) => {
+                return files;
+          }));
+          }
+
           resolve(lessonData);
           return event.sender.send('LESSON_DATA_FETCHED', {
             text: 'success',
             message: 'lesson found',
             data: {
-              wordName: word,
+              wordName: str,
               slideImages: images
             }
           });

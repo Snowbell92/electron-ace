@@ -15,10 +15,10 @@ export declare class PrivateGitHubProvider extends BaseGitHubProvider<PrivateGit
     constructor(options: GithubOptions, updater: AppUpdater, token: string, runtimeOptions: ProviderRuntimeOptions);
     protected createRequestOptions(url: URL, headers?: OutgoingHttpHeaders | null): RequestOptions;
     getLatestVersion(): Promise<PrivateGitHubUpdateInfo>;
-    readonly fileExtraDownloadHeaders: OutgoingHttpHeaders | null;
+    get fileExtraDownloadHeaders(): OutgoingHttpHeaders | null;
     private configureHeaders;
     private getLatestVersionInfo;
-    private readonly basePath;
+    private get basePath();
     resolveFiles(updateInfo: PrivateGitHubUpdateInfo): Array<ResolvedUpdateFileInfo>;
 }
 export interface Asset {

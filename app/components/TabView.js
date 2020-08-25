@@ -13,7 +13,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { RoutedTabs, NavTab } from "react-router-tabs";
 import { Component } from 'react';
 import './add_lesson/AddLession.css';
-import openLessonComponent from './openLesson'
+import openLessonComponent from './openLesson';
+import ShowLesson from './teaching_components/showLesson' ;
 
 class TabView extends Component {
   render() {
@@ -28,7 +29,7 @@ class TabView extends Component {
         activeTabClassName="active"
       >
 
-          <NavTab className='navBarLink' to="/lesson">Open Lesson </NavTab>
+          <NavTab className='navBarLink' to="/showLesson">Open Lesson </NavTab>
           <NavTab className='navBarLink' to="/AddLesson">Add New Lesson </NavTab>
           <NavTab className='navBarLink' to="/addLessonElement">Add Lesson Element  </NavTab>
 

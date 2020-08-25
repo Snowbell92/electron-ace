@@ -67,14 +67,22 @@ class ElectronHttpExecutor extends _builderUtilRuntime().HttpExecutor {
   }
 
   createRequest(options, callback) {
-    // differential downloader can call this method very often, so, better to cache session
+    // fix (node 7+) for making electron updater work when using AWS private buckets, check if headers contain Host property
+    if (options.headers && options.headers.Host) {
+      // set host value from headers.Host
+      options.host = options.headers.Host; // remove header property 'Host', if not removed causes net::ERR_INVALID_ARGUMENT exception
+
+      delete options.headers.Host;
+    } // differential downloader can call this method very often, so, better to cache session
+
+
     if (this.cachedSession == null) {
       this.cachedSession = getNetSession();
     }
 
-    const request = _electron().net.request(Object.assign(Object.assign({}, options), {
+    const request = _electron().net.request({ ...options,
       session: this.cachedSession
-    }));
+    });
 
     request.on("response", callback);
 

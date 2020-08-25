@@ -36,7 +36,7 @@ class AddLesson extends React.Component {
     // console.log(value);
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     // eslint-disable-next-line no-alert
     alert(`A name was submitted: ${this.state.name}`);
     // eslint-disable-next-line spaced-comment
@@ -52,7 +52,7 @@ class AddLesson extends React.Component {
     // eslint-disable-next-line eqeqeq
     if (lesson) {
       // eslint-disable-next-line react/prop-types
-      this.props.pending(lesson);
+      await this.props.pending(lesson);
       //  editNewLessonActions.pending(lesson);
     }
   }
@@ -193,6 +193,11 @@ class AddLesson extends React.Component {
                         </div>
                       )}
                     </Popup>
+
+                    <button type="submit" className="btn btn-primary">
+                      Save
+                    </button>
+
                     <Link
                       to={{
                         pathname: '/addLessonElement',
@@ -202,9 +207,7 @@ class AddLesson extends React.Component {
                       }}
                       className="btn btn-link"
                     >
-                      <button type="submit" className="btn btn-primary">
-                        Save
-                      </button>
+                      Next
                     </Link>
                   </div>
                 </div>

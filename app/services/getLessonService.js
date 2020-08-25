@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 const ipc = require('electron').ipcRenderer;
 
 export const getLessonDataService = {
@@ -24,6 +25,6 @@ function getLesson(id) {
     // eslint-disable-next-line promise/always-return
   }).then(message => {
     // eslint-disable-next-line no-shadow
-    return message;
+    return message.data;
   });
 }

@@ -3,11 +3,11 @@
 const ipc = require('electron').ipcRenderer;
 
 // eslint-disable-next-line import/prefer-default-export
-export const addLessonService = {
+export  const addLessonService = {
   addLesson
 };
 
-function  addLesson(lesson) {
+ function  addLesson(lesson) {
 
   console.log('in service');
 

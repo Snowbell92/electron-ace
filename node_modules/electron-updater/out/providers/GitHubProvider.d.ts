@@ -18,8 +18,8 @@ export declare class GitHubProvider extends BaseGitHubProvider<UpdateInfo> {
     constructor(options: GithubOptions, updater: AppUpdater, runtimeOptions: ProviderRuntimeOptions);
     getLatestVersion(): Promise<UpdateInfo>;
     private getLatestVersionString;
-    private readonly basePath;
+    private get basePath();
     resolveFiles(updateInfo: UpdateInfo): Array<ResolvedUpdateFileInfo>;
     private getBaseDownloadPath;
 }
-export declare function computeReleaseNotes(currentVersion: semver.SemVer, isFullChangelog: boolean, feed: XElement, latestRelease: any): string | ReleaseNoteInfo[];
+export declare function computeReleaseNotes(currentVersion: semver.SemVer, isFullChangelog: boolean, feed: XElement, latestRelease: any): string | Array<ReleaseNoteInfo> | null;

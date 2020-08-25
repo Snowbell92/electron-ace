@@ -25,7 +25,15 @@ function _DifferentialDownloader() {
   return data;
 }
 
-const pako = require("pako");
+function _zlib() {
+  const data = require("zlib");
+
+  _zlib = function () {
+    return data;
+  };
+
+  return data;
+}
 
 class FileWithEmbeddedBlockMapDifferentialDownloader extends _DifferentialDownloader().DifferentialDownloader {
   async download() {
@@ -42,9 +50,7 @@ class FileWithEmbeddedBlockMapDifferentialDownloader extends _DifferentialDownlo
 exports.FileWithEmbeddedBlockMapDifferentialDownloader = FileWithEmbeddedBlockMapDifferentialDownloader;
 
 function readBlockMap(data) {
-  return JSON.parse(pako.inflateRaw(data, {
-    to: "string"
-  }));
+  return JSON.parse((0, _zlib().inflateRawSync)(data).toString());
 }
 
 async function readEmbeddedBlockMapData(file) {

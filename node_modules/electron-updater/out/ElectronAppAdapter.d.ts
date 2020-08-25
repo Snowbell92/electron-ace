@@ -1,14 +1,14 @@
 import { AppAdapter } from "./AppAdapter";
 export declare class ElectronAppAdapter implements AppAdapter {
     private readonly app;
-    constructor(app?: Electron.App);
+    constructor(app?: any);
     whenReady(): Promise<void>;
-    readonly version: string;
-    readonly name: string;
-    readonly isPackaged: boolean;
-    readonly appUpdateConfigPath: string;
-    readonly userDataPath: string;
-    readonly baseCachePath: string;
+    get version(): string;
+    get name(): string;
+    get isPackaged(): boolean;
+    get appUpdateConfigPath(): string;
+    get userDataPath(): string;
+    get baseCachePath(): string;
     quit(): void;
     onQuit(handler: (exitCode: number) => void): void;
 }

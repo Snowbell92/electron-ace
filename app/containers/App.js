@@ -50,7 +50,8 @@ class App extends React.Component {
             <Route path="/AddLesson" component={AddLessonPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
             <Route path="/AddNoun" component={AddNoun} />
-            <Route path="/lesson" component={openLessonComponent} />
+            <Route path="/openLesson" component={openLessonComponent} />
+            <Route path="/showLesson" component={ShowLesson} />
             <Redirect from="*" to="/" />
           </Switch>
         </Router>

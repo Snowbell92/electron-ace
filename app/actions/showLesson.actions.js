@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/prefer-default-export */
 import { showLessonConstants } from '../constants';
 import { getLessonDataService } from '../services/getLessonService';
 import { alertActions } from './alert.actions';
@@ -16,7 +18,10 @@ function fetchLesson(id) {
         // eslint-disable-next-line promise/always-return
         data => {
           console.log(data);
+          console.log(data.wordName);
+          console.log('action');
           dispatch(success(data));
+          return data;
         }
       )
       .catch(error => {
@@ -24,6 +29,7 @@ function fetchLesson(id) {
         dispatch(alertActions.error(error));
       });
   };
+}
 
   function request(lessonID) {
     return { type: showLessonConstants.FETCH, lessonID };
@@ -31,4 +37,3 @@ function fetchLesson(id) {
   function success(lessonData) {
     return { type: showLessonConstants.SUCCESS, lessonData };
   }
-}

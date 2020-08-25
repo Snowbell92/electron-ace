@@ -123,7 +123,7 @@ function _NsisUpdater() {
 // autoUpdater to mimic electron bundled autoUpdater
 let _autoUpdater;
 
-function _load_autoUpdater() {
+function doLoadAutoUpdater() {
   // tslint:disable:prefer-conditional-expression
   if (process.platform === "win32") {
     _autoUpdater = new (require("./NsisUpdater").NsisUpdater)();
@@ -139,7 +139,7 @@ function _load_autoUpdater() {
 Object.defineProperty(exports, "autoUpdater", {
   enumerable: true,
   get: () => {
-    return _autoUpdater || _load_autoUpdater();
+    return _autoUpdater || doLoadAutoUpdater();
   }
 });
 
@@ -186,7 +186,7 @@ function addHandler(emitter, event, handler) {
   if (isLogEvent) {
     emitter.on(event, (...args) => {
       console.log("%s %s", event, args);
-      handler.apply(null, args);
+      handler(...args);
     });
   } else {
     emitter.on(event, handler);

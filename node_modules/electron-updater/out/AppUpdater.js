@@ -149,7 +149,7 @@ function _providerFactory() {
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 class AppUpdater extends _events().EventEmitter {
   constructor(options, app) {
@@ -325,9 +325,9 @@ class AppUpdater extends _events().EventEmitter {
       provider = new (_GenericProvider().GenericProvider)({
         provider: "generic",
         url: options
-      }, this, Object.assign(Object.assign({}, runtimeOptions), {
+      }, this, { ...runtimeOptions,
         isUseMultipleRangeRequest: (0, _providerFactory().isUrlProbablySupportMultiRangeRequests)(options)
-      }));
+      });
     } else {
       provider = (0, _providerFactory().createClient)(options, this, runtimeOptions);
     }
@@ -468,11 +468,7 @@ class AppUpdater extends _events().EventEmitter {
       return true;
     }
 
-    if (this.allowDowngrade && isLatestVersionOlder) {
-      return true;
-    }
-
-    return false;
+    return this.allowDowngrade && isLatestVersionOlder;
   }
 
   async getUpdateInfoAndProvider() {
@@ -491,7 +487,8 @@ class AppUpdater extends _events().EventEmitter {
       info: await client.getLatestVersion(),
       provider: client
     };
-  }
+  } // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+
 
   createProviderRuntimeOptions() {
     return {
@@ -597,7 +594,9 @@ class AppUpdater extends _events().EventEmitter {
 
     if (fileExtraDownloadHeaders != null) {
       const requestHeaders = this.requestHeaders;
-      return requestHeaders == null ? fileExtraDownloadHeaders : Object.assign(Object.assign({}, fileExtraDownloadHeaders), requestHeaders);
+      return requestHeaders == null ? fileExtraDownloadHeaders : { ...fileExtraDownloadHeaders,
+        ...requestHeaders
+      };
     }
 
     return this.computeFinalHeaders({
@@ -717,9 +716,9 @@ class AppUpdater extends _events().EventEmitter {
 
     const done = async isSaveCache => {
       await downloadedUpdateHelper.setDownloadedFile(updateFile, packageFile, updateInfo, fileInfo, updateFileName, isSaveCache);
-      await taskOptions.done(Object.assign(Object.assign({}, updateInfo), {
+      await taskOptions.done({ ...updateInfo,
         downloadedFile: updateFile
-      }));
+      });
       return packageFile == null ? [updateFile] : [updateFile, packageFile];
     };
 
@@ -770,11 +769,14 @@ function hasPrereleaseComponents(version) {
 
 
 class NoOpLogger {
-  info(message) {// ignore
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  info(message) {} // ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-  warn(message) {// ignore
-  }
+
+  warn(message) {} // ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 
   error(message) {// ignore
   }

@@ -70,13 +70,15 @@ function createClient(data, updater, runtimeOptions) {
 
   switch (provider) {
     case "github":
-      const githubOptions = data;
-      const token = (githubOptions.private ? process.env.GH_TOKEN || process.env.GITHUB_TOKEN : null) || githubOptions.token;
+      {
+        const githubOptions = data;
+        const token = (githubOptions.private ? process.env.GH_TOKEN || process.env.GITHUB_TOKEN : null) || githubOptions.token;
 
-      if (token == null) {
-        return new (_GitHubProvider().GitHubProvider)(githubOptions, updater, runtimeOptions);
-      } else {
-        return new (_PrivateGitHubProvider().PrivateGitHubProvider)(githubOptions, updater, token, runtimeOptions);
+        if (token == null) {
+          return new (_GitHubProvider().GitHubProvider)(githubOptions, updater, runtimeOptions);
+        } else {
+          return new (_PrivateGitHubProvider().PrivateGitHubProvider)(githubOptions, updater, token, runtimeOptions);
+        }
       }
 
     case "s3":
@@ -85,16 +87,18 @@ function createClient(data, updater, runtimeOptions) {
         provider: "generic",
         url: (0, _builderUtilRuntime().getS3LikeProviderBaseUrl)(data),
         channel: data.channel || null
-      }, updater, Object.assign(Object.assign({}, runtimeOptions), {
+      }, updater, { ...runtimeOptions,
         // https://github.com/minio/minio/issues/5285#issuecomment-350428955
-        isUseMultipleRangeRequest: provider === "spaces"
-      }));
+        isUseMultipleRangeRequest: false
+      });
 
     case "generic":
-      const options = data;
-      return new (_GenericProvider().GenericProvider)(options, updater, Object.assign(Object.assign({}, runtimeOptions), {
-        isUseMultipleRangeRequest: options.useMultipleRangeRequest !== false && isUrlProbablySupportMultiRangeRequests(options.url)
-      }));
+      {
+        const options = data;
+        return new (_GenericProvider().GenericProvider)(options, updater, { ...runtimeOptions,
+          isUseMultipleRangeRequest: options.useMultipleRangeRequest !== false && isUrlProbablySupportMultiRangeRequests(options.url)
+        });
+      }
 
     case "bintray":
       return new (_BintrayProvider().BintrayProvider)(data, runtimeOptions);
