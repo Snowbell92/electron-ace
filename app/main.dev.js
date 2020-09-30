@@ -35,6 +35,7 @@ const path = require('path');
 const fse = require('fs-extra');
 const ba64 = require('ba64');
 const db = require('../db/db');
+const fs = require('fs');
 
 const imageDir = 'app/assets/images/';
 const videoDir = 'app/assets/videos/';
@@ -54,6 +55,28 @@ let mainWindow = null;
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
+}
+
+function compare(wordOne, wordTwo,i) {
+  return wordOne.charAt(i) === wordTwo.charAt(0);
+}
+
+function getPathRelation(position, basePath, input) {
+  var basePathR = basePath.split("/");
+  var inputR = input.split("/");
+  var output = "";
+  for(c=0; c < inputR.length; c++) {
+     if(c < position) continue;
+     if(basePathR.length <= c) output = "../" + output;
+     if(inputR[c] == basePathR[c]) output += inputR[c] + "/";
+  }
+
+  return output;
+}
+
+// function to know whether directory is empty or not
+function isEmpty(path) {
+  return fs.readdirSync(path).length === 0;
 }
 
 if (
@@ -245,6 +268,45 @@ app.on('ready', async () => {
               );
             });
         }
+
+        Array.isArray(element.video) && element.video.map((video,i) => {
+
+          const destinationPath =`${videoDir  + element.word}`;
+          const dest = `${destinationPath}/_${i}.mp4`
+          console.log(destinationPath);
+
+          if (!fs.existsSync(destinationPath)){
+            fs.mkdirSync(destinationPath);
+        }
+
+          fs.copyFileSync( video, dest, (err) => {
+            if (err) {
+              console.log("Error Found:", err);
+            }  });
+
+        });
+
+        Array.isArray(element.audio) && element.audio.map((audio,i) => {
+
+          const destinationPath =`${audioDir  + element.word}`;
+          const dest = `${destinationPath}/_${i}.mp3`
+          console.log(destinationPath);
+
+          if (!fs.existsSync(destinationPath)){
+            fs.mkdirSync(destinationPath);
+        }
+
+        console.log(audio);
+        console.log(dest);
+
+          fs.copyFileSync( audio, dest, (err) => {
+            if (err) {
+              console.log("Error Found:", err);
+            }  });
+
+        });
+
+
         db.allImages
           .findOrCreate({
             where: {
@@ -300,6 +362,43 @@ app.on('ready', async () => {
     // eslint-disable-next-line promise/catch-or-return
      return new Promise((resolve, reject) => {
       // eslint-disable-next-line promise/catch-or-return
+
+      if (Array.isArray(lesson.thumbnail) && lesson.thumbnail.length) {
+        // image exists. save image to proper folder.create folder if necessary
+        for (let i = 0; i < lesson.thumbnail.length; i++) {
+          const subDir = thumbnailDir + lesson.name;
+          // eslint-disable-next-line promise/always-return
+          fse
+            .ensureDir(subDir)
+            // eslint-disable-next-line promise/always-return
+            .then(data => {
+              console.log(data);
+              const fullImagePath = `${thumbnailDir + lesson.name}/${
+                lesson.name
+              }_${i}`;
+              // Or save the image asynchronously.
+              ba64.writeImage(
+                fullImagePath,
+                lesson.thumbnailFile[i].toString(),
+                function(err) {
+                  if (err) {
+                    reject(new Error('Image could not be saved to disk'));
+                  }
+                  console.log('Image saved successfully');
+                }
+              );
+            })
+            .catch(err => {
+              console.error(err);
+              reject(
+                new Error(
+                  'something went wrong and image could not be saved to disk.'
+                )
+              );
+            });
+        }
+      }
+
       db.lesson
         .findOrCreate({
           where: {
@@ -379,24 +478,66 @@ app.on('ready', async () => {
           console.log(lessonData);
           console.log(lessonData[0].word);
           const size =Object.keys(lessonData).length;
-          let i ;
+
+
           const str = [];
           const images =[];
-          for (i=0 ; i<size ; i++){
-            str.push(lessonData[i].word);
-            const dir = path.join(imageDir, str[i]);
-            images.push(fse.readdirSync(dir, (err, files) => {
-                return files;
-          }));
-          }
+          const audioes=[];
+          const videoes=[];
 
+          for (let i=0 ; i<size ; i++){
+            str.push(lessonData[i].word);
+
+            const dirImage = path.join(imageDir, str[i]);
+            const dirVideo = path.join(videoDir, str[i]);
+            const dirAudio = path.join(audioDir, str[i]);
+
+
+            console.log(dirAudio);
+            console.log(dirVideo);
+
+
+              if (fs.existsSync(dirImage)) {
+                images.push(fse.readdirSync(dirImage, (err, files) => {
+                  return files;
+                }));
+            }
+
+            if (fs.existsSync(dirAudio)) {
+              audioes.push(fse.readdirSync(dirAudio, (err, files) => {
+                return files;
+              }));
+            }
+
+            if (fs.existsSync(dirVideo)) {
+              videoes.push(fse.readdirSync(dirVideo, (err, files) => {
+                return files;
+              }));
+            }
+
+        /*    if(isEmpty(dirAudio)){
+              audioes.push(fse.readdirSync(dirImage, (err, files) => {
+                return files;
+              }));
+            }
+
+            if(isEmpty(dirVideo)){
+              videoes.push(fse.readdirSync(dirImage, (err, files) => {
+                return files;
+              }));
+            } */
+
+          }
+         // console.log(videoes);
           resolve(lessonData);
           return event.sender.send('LESSON_DATA_FETCHED', {
             text: 'success',
             message: 'lesson found',
             data: {
               wordName: str,
-              slideImages: images
+              slideImages: images,
+              audio: audioes,
+              video: videoes
             }
           });
         })

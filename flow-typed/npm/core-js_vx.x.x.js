@@ -1,4 +1,4 @@
-// flow-typed signature: a3d73b5ced6cc7390d75aeed23b5171c
+// flow-typed signature: e9d61f1c222804fcf436ab96db30fe4b
 // flow-typed version: <<STUB>>/core-js_v^3.5.0/flow_v0.113.0
 
 /**
@@ -847,6 +847,14 @@ declare module 'core-js/es/regexp/search' {
 }
 
 declare module 'core-js/es/regexp/split' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/es/regexp/sticky' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/es/regexp/test' {
   declare module.exports: any;
 }
 
@@ -2534,6 +2542,14 @@ declare module 'core-js/features/regexp/split' {
   declare module.exports: any;
 }
 
+declare module 'core-js/features/regexp/sticky' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/features/regexp/test' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/features/regexp/to-string' {
   declare module.exports: any;
 }
@@ -3214,6 +3230,10 @@ declare module 'core-js/internals/an-object' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/array-buffer-native' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/array-buffer-view-core' {
   declare module.exports: any;
 }
@@ -3254,6 +3274,14 @@ declare module 'core-js/internals/array-method-has-species-support' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/array-method-is-strict' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/array-method-uses-to-length' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/array-reduce' {
   declare module.exports: any;
 }
@@ -3262,15 +3290,15 @@ declare module 'core-js/internals/array-species-create' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/async-iterator-create-proxy' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/async-iterator-iteration' {
   declare module.exports: any;
 }
 
 declare module 'core-js/internals/async-iterator-prototype' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/bind-context' {
   declare module.exports: any;
 }
 
@@ -3334,19 +3362,11 @@ declare module 'core-js/internals/correct-prototype-getter' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/create-async-iterator-proxy' {
-  declare module.exports: any;
-}
-
 declare module 'core-js/internals/create-html' {
   declare module.exports: any;
 }
 
 declare module 'core-js/internals/create-iterator-constructor' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/create-iterator-proxy' {
   declare module.exports: any;
 }
 
@@ -3390,6 +3410,18 @@ declare module 'core-js/internals/dom-iterables' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/engine-is-ios' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/engine-user-agent' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/engine-v8-version' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/entry-unbind' {
   declare module.exports: any;
 }
@@ -3418,19 +3450,11 @@ declare module 'core-js/internals/flatten-into-array' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/forced-object-prototype-accessors-methods' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/forced-string-html-method' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/forced-string-trim-method' {
-  declare module.exports: any;
-}
-
 declare module 'core-js/internals/freezing' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/function-bind-context' {
   declare module.exports: any;
 }
 
@@ -3526,10 +3550,6 @@ declare module 'core-js/internals/is-integer' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/is-ios' {
-  declare module.exports: any;
-}
-
 declare module 'core-js/internals/is-iterable' {
   declare module.exports: any;
 }
@@ -3547,6 +3567,10 @@ declare module 'core-js/internals/is-regexp' {
 }
 
 declare module 'core-js/internals/iterate' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/iterator-create-proxy' {
   declare module.exports: any;
 }
 
@@ -3614,6 +3638,14 @@ declare module 'core-js/internals/number-is-finite' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/number-parse-float' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/number-parse-int' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/object-assign' {
   declare module.exports: any;
 }
@@ -3666,6 +3698,10 @@ declare module 'core-js/internals/object-property-is-enumerable' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/object-prototype-accessors-forced' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/object-set-prototype-of' {
   declare module.exports: any;
 }
@@ -3682,14 +3718,6 @@ declare module 'core-js/internals/own-keys' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/parse-float' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/parse-int' {
-  declare module.exports: any;
-}
-
 declare module 'core-js/internals/path' {
   declare module.exports: any;
 }
@@ -3699,10 +3727,6 @@ declare module 'core-js/internals/perform' {
 }
 
 declare module 'core-js/internals/promise-resolve' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/punycode-to-ascii' {
   declare module.exports: any;
 }
 
@@ -3727,6 +3751,10 @@ declare module 'core-js/internals/regexp-exec' {
 }
 
 declare module 'core-js/internals/regexp-flags' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/regexp-sticky-helpers' {
   declare module.exports: any;
 }
 
@@ -3766,11 +3794,11 @@ declare module 'core-js/internals/shared' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/sloppy-array-method' {
+declare module 'core-js/internals/species-constructor' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/species-constructor' {
+declare module 'core-js/internals/string-html-forced' {
   declare module.exports: any;
 }
 
@@ -3778,11 +3806,23 @@ declare module 'core-js/internals/string-multibyte' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/string-pad-webkit-bug' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/string-pad' {
   declare module.exports: any;
 }
 
+declare module 'core-js/internals/string-punycode-to-ascii' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/internals/string-repeat' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/internals/string-trim-forced' {
   declare module.exports: any;
 }
 
@@ -3842,11 +3882,11 @@ declare module 'core-js/internals/typed-array-constructor' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/typed-array-from' {
+declare module 'core-js/internals/typed-array-constructors-require-wrappers' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/typed-arrays-constructors-requires-wrappers' {
+declare module 'core-js/internals/typed-array-from' {
   declare module.exports: any;
 }
 
@@ -3858,15 +3898,7 @@ declare module 'core-js/internals/use-symbol-as-uid' {
   declare module.exports: any;
 }
 
-declare module 'core-js/internals/user-agent' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/v8-version' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/webkit-string-pad-bug' {
+declare module 'core-js/internals/well-known-symbol-wrapped' {
   declare module.exports: any;
 }
 
@@ -3875,10 +3907,6 @@ declare module 'core-js/internals/well-known-symbol' {
 }
 
 declare module 'core-js/internals/whitespaces' {
-  declare module.exports: any;
-}
-
-declare module 'core-js/internals/wrapped-well-known-symbol' {
   declare module.exports: any;
 }
 
@@ -4363,6 +4391,14 @@ declare module 'core-js/modules/es.regexp.exec' {
 }
 
 declare module 'core-js/modules/es.regexp.flags' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/modules/es.regexp.sticky' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/modules/es.regexp.test' {
   declare module.exports: any;
 }
 
@@ -6174,6 +6210,14 @@ declare module 'core-js/stable/regexp/split' {
   declare module.exports: any;
 }
 
+declare module 'core-js/stable/regexp/sticky' {
+  declare module.exports: any;
+}
+
+declare module 'core-js/stable/regexp/test' {
+  declare module.exports: any;
+}
+
 declare module 'core-js/stable/regexp/to-string' {
   declare module.exports: any;
 }
@@ -7410,6 +7454,12 @@ declare module 'core-js/es/regexp/search.js' {
 }
 declare module 'core-js/es/regexp/split.js' {
   declare module.exports: $Exports<'core-js/es/regexp/split'>;
+}
+declare module 'core-js/es/regexp/sticky.js' {
+  declare module.exports: $Exports<'core-js/es/regexp/sticky'>;
+}
+declare module 'core-js/es/regexp/test.js' {
+  declare module.exports: $Exports<'core-js/es/regexp/test'>;
 }
 declare module 'core-js/es/regexp/to-string.js' {
   declare module.exports: $Exports<'core-js/es/regexp/to-string'>;
@@ -8758,6 +8808,12 @@ declare module 'core-js/features/regexp/search.js' {
 declare module 'core-js/features/regexp/split.js' {
   declare module.exports: $Exports<'core-js/features/regexp/split'>;
 }
+declare module 'core-js/features/regexp/sticky.js' {
+  declare module.exports: $Exports<'core-js/features/regexp/sticky'>;
+}
+declare module 'core-js/features/regexp/test.js' {
+  declare module.exports: $Exports<'core-js/features/regexp/test'>;
+}
 declare module 'core-js/features/regexp/to-string.js' {
   declare module.exports: $Exports<'core-js/features/regexp/to-string'>;
 }
@@ -9301,6 +9357,9 @@ declare module 'core-js/internals/an-instance.js' {
 declare module 'core-js/internals/an-object.js' {
   declare module.exports: $Exports<'core-js/internals/an-object'>;
 }
+declare module 'core-js/internals/array-buffer-native.js' {
+  declare module.exports: $Exports<'core-js/internals/array-buffer-native'>;
+}
 declare module 'core-js/internals/array-buffer-view-core.js' {
   declare module.exports: $Exports<'core-js/internals/array-buffer-view-core'>;
 }
@@ -9331,20 +9390,26 @@ declare module 'core-js/internals/array-last-index-of.js' {
 declare module 'core-js/internals/array-method-has-species-support.js' {
   declare module.exports: $Exports<'core-js/internals/array-method-has-species-support'>;
 }
+declare module 'core-js/internals/array-method-is-strict.js' {
+  declare module.exports: $Exports<'core-js/internals/array-method-is-strict'>;
+}
+declare module 'core-js/internals/array-method-uses-to-length.js' {
+  declare module.exports: $Exports<'core-js/internals/array-method-uses-to-length'>;
+}
 declare module 'core-js/internals/array-reduce.js' {
   declare module.exports: $Exports<'core-js/internals/array-reduce'>;
 }
 declare module 'core-js/internals/array-species-create.js' {
   declare module.exports: $Exports<'core-js/internals/array-species-create'>;
 }
+declare module 'core-js/internals/async-iterator-create-proxy.js' {
+  declare module.exports: $Exports<'core-js/internals/async-iterator-create-proxy'>;
+}
 declare module 'core-js/internals/async-iterator-iteration.js' {
   declare module.exports: $Exports<'core-js/internals/async-iterator-iteration'>;
 }
 declare module 'core-js/internals/async-iterator-prototype.js' {
   declare module.exports: $Exports<'core-js/internals/async-iterator-prototype'>;
-}
-declare module 'core-js/internals/bind-context.js' {
-  declare module.exports: $Exports<'core-js/internals/bind-context'>;
 }
 declare module 'core-js/internals/call-with-safe-iteration-closing.js' {
   declare module.exports: $Exports<'core-js/internals/call-with-safe-iteration-closing'>;
@@ -9391,17 +9456,11 @@ declare module 'core-js/internals/correct-is-regexp-logic.js' {
 declare module 'core-js/internals/correct-prototype-getter.js' {
   declare module.exports: $Exports<'core-js/internals/correct-prototype-getter'>;
 }
-declare module 'core-js/internals/create-async-iterator-proxy.js' {
-  declare module.exports: $Exports<'core-js/internals/create-async-iterator-proxy'>;
-}
 declare module 'core-js/internals/create-html.js' {
   declare module.exports: $Exports<'core-js/internals/create-html'>;
 }
 declare module 'core-js/internals/create-iterator-constructor.js' {
   declare module.exports: $Exports<'core-js/internals/create-iterator-constructor'>;
-}
-declare module 'core-js/internals/create-iterator-proxy.js' {
-  declare module.exports: $Exports<'core-js/internals/create-iterator-proxy'>;
 }
 declare module 'core-js/internals/create-non-enumerable-property.js' {
   declare module.exports: $Exports<'core-js/internals/create-non-enumerable-property'>;
@@ -9433,6 +9492,15 @@ declare module 'core-js/internals/document-create-element.js' {
 declare module 'core-js/internals/dom-iterables.js' {
   declare module.exports: $Exports<'core-js/internals/dom-iterables'>;
 }
+declare module 'core-js/internals/engine-is-ios.js' {
+  declare module.exports: $Exports<'core-js/internals/engine-is-ios'>;
+}
+declare module 'core-js/internals/engine-user-agent.js' {
+  declare module.exports: $Exports<'core-js/internals/engine-user-agent'>;
+}
+declare module 'core-js/internals/engine-v8-version.js' {
+  declare module.exports: $Exports<'core-js/internals/engine-v8-version'>;
+}
 declare module 'core-js/internals/entry-unbind.js' {
   declare module.exports: $Exports<'core-js/internals/entry-unbind'>;
 }
@@ -9454,17 +9522,11 @@ declare module 'core-js/internals/fix-regexp-well-known-symbol-logic.js' {
 declare module 'core-js/internals/flatten-into-array.js' {
   declare module.exports: $Exports<'core-js/internals/flatten-into-array'>;
 }
-declare module 'core-js/internals/forced-object-prototype-accessors-methods.js' {
-  declare module.exports: $Exports<'core-js/internals/forced-object-prototype-accessors-methods'>;
-}
-declare module 'core-js/internals/forced-string-html-method.js' {
-  declare module.exports: $Exports<'core-js/internals/forced-string-html-method'>;
-}
-declare module 'core-js/internals/forced-string-trim-method.js' {
-  declare module.exports: $Exports<'core-js/internals/forced-string-trim-method'>;
-}
 declare module 'core-js/internals/freezing.js' {
   declare module.exports: $Exports<'core-js/internals/freezing'>;
+}
+declare module 'core-js/internals/function-bind-context.js' {
+  declare module.exports: $Exports<'core-js/internals/function-bind-context'>;
 }
 declare module 'core-js/internals/function-bind.js' {
   declare module.exports: $Exports<'core-js/internals/function-bind'>;
@@ -9535,9 +9597,6 @@ declare module 'core-js/internals/is-forced.js' {
 declare module 'core-js/internals/is-integer.js' {
   declare module.exports: $Exports<'core-js/internals/is-integer'>;
 }
-declare module 'core-js/internals/is-ios.js' {
-  declare module.exports: $Exports<'core-js/internals/is-ios'>;
-}
 declare module 'core-js/internals/is-iterable.js' {
   declare module.exports: $Exports<'core-js/internals/is-iterable'>;
 }
@@ -9552,6 +9611,9 @@ declare module 'core-js/internals/is-regexp.js' {
 }
 declare module 'core-js/internals/iterate.js' {
   declare module.exports: $Exports<'core-js/internals/iterate'>;
+}
+declare module 'core-js/internals/iterator-create-proxy.js' {
+  declare module.exports: $Exports<'core-js/internals/iterator-create-proxy'>;
 }
 declare module 'core-js/internals/iterators-core.js' {
   declare module.exports: $Exports<'core-js/internals/iterators-core'>;
@@ -9601,6 +9663,12 @@ declare module 'core-js/internals/not-a-regexp.js' {
 declare module 'core-js/internals/number-is-finite.js' {
   declare module.exports: $Exports<'core-js/internals/number-is-finite'>;
 }
+declare module 'core-js/internals/number-parse-float.js' {
+  declare module.exports: $Exports<'core-js/internals/number-parse-float'>;
+}
+declare module 'core-js/internals/number-parse-int.js' {
+  declare module.exports: $Exports<'core-js/internals/number-parse-int'>;
+}
 declare module 'core-js/internals/object-assign.js' {
   declare module.exports: $Exports<'core-js/internals/object-assign'>;
 }
@@ -9640,6 +9708,9 @@ declare module 'core-js/internals/object-keys.js' {
 declare module 'core-js/internals/object-property-is-enumerable.js' {
   declare module.exports: $Exports<'core-js/internals/object-property-is-enumerable'>;
 }
+declare module 'core-js/internals/object-prototype-accessors-forced.js' {
+  declare module.exports: $Exports<'core-js/internals/object-prototype-accessors-forced'>;
+}
 declare module 'core-js/internals/object-set-prototype-of.js' {
   declare module.exports: $Exports<'core-js/internals/object-set-prototype-of'>;
 }
@@ -9652,12 +9723,6 @@ declare module 'core-js/internals/object-to-string.js' {
 declare module 'core-js/internals/own-keys.js' {
   declare module.exports: $Exports<'core-js/internals/own-keys'>;
 }
-declare module 'core-js/internals/parse-float.js' {
-  declare module.exports: $Exports<'core-js/internals/parse-float'>;
-}
-declare module 'core-js/internals/parse-int.js' {
-  declare module.exports: $Exports<'core-js/internals/parse-int'>;
-}
 declare module 'core-js/internals/path.js' {
   declare module.exports: $Exports<'core-js/internals/path'>;
 }
@@ -9666,9 +9731,6 @@ declare module 'core-js/internals/perform.js' {
 }
 declare module 'core-js/internals/promise-resolve.js' {
   declare module.exports: $Exports<'core-js/internals/promise-resolve'>;
-}
-declare module 'core-js/internals/punycode-to-ascii.js' {
-  declare module.exports: $Exports<'core-js/internals/punycode-to-ascii'>;
 }
 declare module 'core-js/internals/redefine-all.js' {
   declare module.exports: $Exports<'core-js/internals/redefine-all'>;
@@ -9687,6 +9749,9 @@ declare module 'core-js/internals/regexp-exec.js' {
 }
 declare module 'core-js/internals/regexp-flags.js' {
   declare module.exports: $Exports<'core-js/internals/regexp-flags'>;
+}
+declare module 'core-js/internals/regexp-sticky-helpers.js' {
+  declare module.exports: $Exports<'core-js/internals/regexp-sticky-helpers'>;
 }
 declare module 'core-js/internals/require-object-coercible.js' {
   declare module.exports: $Exports<'core-js/internals/require-object-coercible'>;
@@ -9715,20 +9780,29 @@ declare module 'core-js/internals/shared-store.js' {
 declare module 'core-js/internals/shared.js' {
   declare module.exports: $Exports<'core-js/internals/shared'>;
 }
-declare module 'core-js/internals/sloppy-array-method.js' {
-  declare module.exports: $Exports<'core-js/internals/sloppy-array-method'>;
-}
 declare module 'core-js/internals/species-constructor.js' {
   declare module.exports: $Exports<'core-js/internals/species-constructor'>;
+}
+declare module 'core-js/internals/string-html-forced.js' {
+  declare module.exports: $Exports<'core-js/internals/string-html-forced'>;
 }
 declare module 'core-js/internals/string-multibyte.js' {
   declare module.exports: $Exports<'core-js/internals/string-multibyte'>;
 }
+declare module 'core-js/internals/string-pad-webkit-bug.js' {
+  declare module.exports: $Exports<'core-js/internals/string-pad-webkit-bug'>;
+}
 declare module 'core-js/internals/string-pad.js' {
   declare module.exports: $Exports<'core-js/internals/string-pad'>;
 }
+declare module 'core-js/internals/string-punycode-to-ascii.js' {
+  declare module.exports: $Exports<'core-js/internals/string-punycode-to-ascii'>;
+}
 declare module 'core-js/internals/string-repeat.js' {
   declare module.exports: $Exports<'core-js/internals/string-repeat'>;
+}
+declare module 'core-js/internals/string-trim-forced.js' {
+  declare module.exports: $Exports<'core-js/internals/string-trim-forced'>;
 }
 declare module 'core-js/internals/string-trim.js' {
   declare module.exports: $Exports<'core-js/internals/string-trim'>;
@@ -9772,11 +9846,11 @@ declare module 'core-js/internals/to-string-tag-support.js' {
 declare module 'core-js/internals/typed-array-constructor.js' {
   declare module.exports: $Exports<'core-js/internals/typed-array-constructor'>;
 }
+declare module 'core-js/internals/typed-array-constructors-require-wrappers.js' {
+  declare module.exports: $Exports<'core-js/internals/typed-array-constructors-require-wrappers'>;
+}
 declare module 'core-js/internals/typed-array-from.js' {
   declare module.exports: $Exports<'core-js/internals/typed-array-from'>;
-}
-declare module 'core-js/internals/typed-arrays-constructors-requires-wrappers.js' {
-  declare module.exports: $Exports<'core-js/internals/typed-arrays-constructors-requires-wrappers'>;
 }
 declare module 'core-js/internals/uid.js' {
   declare module.exports: $Exports<'core-js/internals/uid'>;
@@ -9784,23 +9858,14 @@ declare module 'core-js/internals/uid.js' {
 declare module 'core-js/internals/use-symbol-as-uid.js' {
   declare module.exports: $Exports<'core-js/internals/use-symbol-as-uid'>;
 }
-declare module 'core-js/internals/user-agent.js' {
-  declare module.exports: $Exports<'core-js/internals/user-agent'>;
-}
-declare module 'core-js/internals/v8-version.js' {
-  declare module.exports: $Exports<'core-js/internals/v8-version'>;
-}
-declare module 'core-js/internals/webkit-string-pad-bug.js' {
-  declare module.exports: $Exports<'core-js/internals/webkit-string-pad-bug'>;
+declare module 'core-js/internals/well-known-symbol-wrapped.js' {
+  declare module.exports: $Exports<'core-js/internals/well-known-symbol-wrapped'>;
 }
 declare module 'core-js/internals/well-known-symbol.js' {
   declare module.exports: $Exports<'core-js/internals/well-known-symbol'>;
 }
 declare module 'core-js/internals/whitespaces.js' {
   declare module.exports: $Exports<'core-js/internals/whitespaces'>;
-}
-declare module 'core-js/internals/wrapped-well-known-symbol.js' {
-  declare module.exports: $Exports<'core-js/internals/wrapped-well-known-symbol'>;
 }
 declare module 'core-js/modules/es.array-buffer.constructor.js' {
   declare module.exports: $Exports<'core-js/modules/es.array-buffer.constructor'>;
@@ -10164,6 +10229,12 @@ declare module 'core-js/modules/es.regexp.exec.js' {
 }
 declare module 'core-js/modules/es.regexp.flags.js' {
   declare module.exports: $Exports<'core-js/modules/es.regexp.flags'>;
+}
+declare module 'core-js/modules/es.regexp.sticky.js' {
+  declare module.exports: $Exports<'core-js/modules/es.regexp.sticky'>;
+}
+declare module 'core-js/modules/es.regexp.test.js' {
+  declare module.exports: $Exports<'core-js/modules/es.regexp.test'>;
 }
 declare module 'core-js/modules/es.regexp.to-string.js' {
   declare module.exports: $Exports<'core-js/modules/es.regexp.to-string'>;
@@ -11577,6 +11648,12 @@ declare module 'core-js/stable/regexp/search.js' {
 }
 declare module 'core-js/stable/regexp/split.js' {
   declare module.exports: $Exports<'core-js/stable/regexp/split'>;
+}
+declare module 'core-js/stable/regexp/sticky.js' {
+  declare module.exports: $Exports<'core-js/stable/regexp/sticky'>;
+}
+declare module 'core-js/stable/regexp/test.js' {
+  declare module.exports: $Exports<'core-js/stable/regexp/test'>;
 }
 declare module 'core-js/stable/regexp/to-string.js' {
   declare module.exports: $Exports<'core-js/stable/regexp/to-string'>;

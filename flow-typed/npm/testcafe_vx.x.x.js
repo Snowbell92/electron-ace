@@ -1,4 +1,4 @@
-// flow-typed signature: 94daf2dd0596ea870cca1bfb4189cf60
+// flow-typed signature: 5046f1f9928a8eb48ce7399e30a869b9
 // flow-typed version: <<STUB>>/testcafe_v^1.6.1/flow_v0.113.0
 
 /**
@@ -50,7 +50,15 @@ declare module 'testcafe/lib/api/request-hooks/request-mock' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/api/structure/base-unit' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/api/structure/fixture' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/api/structure/interfaces' {
   declare module.exports: any;
 }
 
@@ -63,6 +71,10 @@ declare module 'testcafe/lib/api/structure/test' {
 }
 
 declare module 'testcafe/lib/api/structure/testing-unit' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/api/structure/unit-type' {
   declare module.exports: any;
 }
 
@@ -122,6 +134,10 @@ declare module 'testcafe/lib/browser/connection/gateway' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/browser/connection/heartbeat-status' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/browser/connection' {
   declare module.exports: any;
 }
@@ -135,6 +151,10 @@ declare module 'testcafe/lib/browser/connection/status' {
 }
 
 declare module 'testcafe/lib/browser/connection/unstable-network-mode' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/browser/interfaces' {
   declare module.exports: any;
 }
 
@@ -167,6 +187,14 @@ declare module 'testcafe/lib/browser/provider/built-in/dedicated/chrome/local-ch
 }
 
 declare module 'testcafe/lib/browser/provider/built-in/dedicated/chrome/runtime-info' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/browser/provider/built-in/dedicated/edge' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/browser/provider/built-in/dedicated/edge/runtime-info' {
   declare module.exports: any;
 }
 
@@ -290,6 +318,10 @@ declare module 'testcafe/lib/client-functions/replicator' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/client-functions/return-single-prop-mode' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/client-functions/selectors/add-api' {
   declare module.exports: any;
 }
@@ -315,6 +347,10 @@ declare module 'testcafe/lib/client-functions/selectors/selector-text-filter' {
 }
 
 declare module 'testcafe/lib/client-functions/selectors/snapshot-properties' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/client-functions/types' {
   declare module.exports: any;
 }
 
@@ -370,6 +406,10 @@ declare module 'testcafe/lib/compiler' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/compiler/interfaces' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/compiler/load-babel-libs' {
   declare module.exports: any;
 }
@@ -411,10 +451,6 @@ declare module 'testcafe/lib/compiler/test-file/formats/typescript/get-test-list
 }
 
 declare module 'testcafe/lib/compiler/test-file/test-file-parser-base' {
-  declare module.exports: any;
-}
-
-declare module 'testcafe/lib/configuration/allow-multiple-windows-option' {
   declare module.exports: any;
 }
 
@@ -630,6 +666,18 @@ declare module 'testcafe/lib/notifications/warning-message' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/reporter/command/command-formatter' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/reporter/command/format-command' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/reporter/command/interfaces' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/reporter' {
   declare module.exports: any;
 }
@@ -674,6 +722,14 @@ declare module 'testcafe/lib/runner' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/runner/interfaces' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/runner/reporter-stream-controller' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/runner/task' {
   declare module.exports: any;
 }
@@ -706,11 +762,51 @@ declare module 'testcafe/lib/screenshots/utils' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/services/compiler/host' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/compiler/io' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/compiler/protocol' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/compiler/service' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/compiler/test-run-proxy' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/compiler/test-structure' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/services/utils/ipc/interfaces' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/services/utils/ipc/io' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/utils/ipc/message' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/utils/ipc/packet' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/services/utils/ipc/proxy' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/services/utils/ipc/transport' {
   declare module.exports: any;
 }
 
@@ -858,6 +954,10 @@ declare module 'testcafe/lib/utils/detect-ffmpeg' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/utils/diff' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/utils/escape-user-agent' {
   declare module.exports: any;
 }
@@ -867,6 +967,10 @@ declare module 'testcafe/lib/utils/flag-list' {
 }
 
 declare module 'testcafe/lib/utils/get-any-key' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/utils/get-browser' {
   declare module.exports: any;
 }
 
@@ -950,6 +1054,10 @@ declare module 'testcafe/lib/utils/prepare-reporters' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/utils/prerender-callsite' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/utils/process' {
   declare module.exports: any;
 }
@@ -1006,7 +1114,7 @@ declare module 'testcafe/lib/utils/timer' {
   declare module.exports: any;
 }
 
-declare module 'testcafe/lib/video-recorder' {
+declare module 'testcafe/lib/video-recorder/interfaces' {
   declare module.exports: any;
 }
 
@@ -1014,7 +1122,15 @@ declare module 'testcafe/lib/video-recorder/process' {
   declare module.exports: any;
 }
 
+declare module 'testcafe/lib/video-recorder/recorder' {
+  declare module.exports: any;
+}
+
 declare module 'testcafe/lib/video-recorder/test-run-video-recorder' {
+  declare module.exports: any;
+}
+
+declare module 'testcafe/lib/video-recorder/videos' {
   declare module.exports: any;
 }
 
@@ -1043,8 +1159,14 @@ declare module 'testcafe/lib/api/request-hooks/request-logger.js' {
 declare module 'testcafe/lib/api/request-hooks/request-mock.js' {
   declare module.exports: $Exports<'testcafe/lib/api/request-hooks/request-mock'>;
 }
+declare module 'testcafe/lib/api/structure/base-unit.js' {
+  declare module.exports: $Exports<'testcafe/lib/api/structure/base-unit'>;
+}
 declare module 'testcafe/lib/api/structure/fixture.js' {
   declare module.exports: $Exports<'testcafe/lib/api/structure/fixture'>;
+}
+declare module 'testcafe/lib/api/structure/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/api/structure/interfaces'>;
 }
 declare module 'testcafe/lib/api/structure/test-file.js' {
   declare module.exports: $Exports<'testcafe/lib/api/structure/test-file'>;
@@ -1054,6 +1176,9 @@ declare module 'testcafe/lib/api/structure/test.js' {
 }
 declare module 'testcafe/lib/api/structure/testing-unit.js' {
   declare module.exports: $Exports<'testcafe/lib/api/structure/testing-unit'>;
+}
+declare module 'testcafe/lib/api/structure/unit-type.js' {
+  declare module.exports: $Exports<'testcafe/lib/api/structure/unit-type'>;
 }
 declare module 'testcafe/lib/api/test-controller/assertion.js' {
   declare module.exports: $Exports<'testcafe/lib/api/test-controller/assertion'>;
@@ -1100,6 +1225,9 @@ declare module 'testcafe/lib/browser/connection/command.js' {
 declare module 'testcafe/lib/browser/connection/gateway.js' {
   declare module.exports: $Exports<'testcafe/lib/browser/connection/gateway'>;
 }
+declare module 'testcafe/lib/browser/connection/heartbeat-status.js' {
+  declare module.exports: $Exports<'testcafe/lib/browser/connection/heartbeat-status'>;
+}
 declare module 'testcafe/lib/browser/connection/index' {
   declare module.exports: $Exports<'testcafe/lib/browser/connection'>;
 }
@@ -1114,6 +1242,9 @@ declare module 'testcafe/lib/browser/connection/status.js' {
 }
 declare module 'testcafe/lib/browser/connection/unstable-network-mode.js' {
   declare module.exports: $Exports<'testcafe/lib/browser/connection/unstable-network-mode'>;
+}
+declare module 'testcafe/lib/browser/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/browser/interfaces'>;
 }
 declare module 'testcafe/lib/browser/provider/built-in/dedicated/base.js' {
   declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/base'>;
@@ -1141,6 +1272,15 @@ declare module 'testcafe/lib/browser/provider/built-in/dedicated/chrome/local-ch
 }
 declare module 'testcafe/lib/browser/provider/built-in/dedicated/chrome/runtime-info.js' {
   declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/chrome/runtime-info'>;
+}
+declare module 'testcafe/lib/browser/provider/built-in/dedicated/edge/index' {
+  declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/edge'>;
+}
+declare module 'testcafe/lib/browser/provider/built-in/dedicated/edge/index.js' {
+  declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/edge'>;
+}
+declare module 'testcafe/lib/browser/provider/built-in/dedicated/edge/runtime-info.js' {
+  declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/edge/runtime-info'>;
 }
 declare module 'testcafe/lib/browser/provider/built-in/dedicated/firefox/config.js' {
   declare module.exports: $Exports<'testcafe/lib/browser/provider/built-in/dedicated/firefox/config'>;
@@ -1247,6 +1387,9 @@ declare module 'testcafe/lib/client-functions/client-function-builder.js' {
 declare module 'testcafe/lib/client-functions/replicator.js' {
   declare module.exports: $Exports<'testcafe/lib/client-functions/replicator'>;
 }
+declare module 'testcafe/lib/client-functions/return-single-prop-mode.js' {
+  declare module.exports: $Exports<'testcafe/lib/client-functions/return-single-prop-mode'>;
+}
 declare module 'testcafe/lib/client-functions/selectors/add-api.js' {
   declare module.exports: $Exports<'testcafe/lib/client-functions/selectors/add-api'>;
 }
@@ -1267,6 +1410,9 @@ declare module 'testcafe/lib/client-functions/selectors/selector-text-filter.js'
 }
 declare module 'testcafe/lib/client-functions/selectors/snapshot-properties.js' {
   declare module.exports: $Exports<'testcafe/lib/client-functions/selectors/snapshot-properties'>;
+}
+declare module 'testcafe/lib/client-functions/types.js' {
+  declare module.exports: $Exports<'testcafe/lib/client-functions/types'>;
 }
 declare module 'testcafe/lib/client/automation/index' {
   declare module.exports: $Exports<'testcafe/lib/client/automation'>;
@@ -1325,6 +1471,9 @@ declare module 'testcafe/lib/compiler/index' {
 declare module 'testcafe/lib/compiler/index.js' {
   declare module.exports: $Exports<'testcafe/lib/compiler'>;
 }
+declare module 'testcafe/lib/compiler/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/compiler/interfaces'>;
+}
 declare module 'testcafe/lib/compiler/load-babel-libs.js' {
   declare module.exports: $Exports<'testcafe/lib/compiler/load-babel-libs'>;
 }
@@ -1357,9 +1506,6 @@ declare module 'testcafe/lib/compiler/test-file/formats/typescript/get-test-list
 }
 declare module 'testcafe/lib/compiler/test-file/test-file-parser-base.js' {
   declare module.exports: $Exports<'testcafe/lib/compiler/test-file/test-file-parser-base'>;
-}
-declare module 'testcafe/lib/configuration/allow-multiple-windows-option.js' {
-  declare module.exports: $Exports<'testcafe/lib/configuration/allow-multiple-windows-option'>;
 }
 declare module 'testcafe/lib/configuration/configuration-base.js' {
   declare module.exports: $Exports<'testcafe/lib/configuration/configuration-base'>;
@@ -1535,6 +1681,15 @@ declare module 'testcafe/lib/notifications/warning-log.js' {
 declare module 'testcafe/lib/notifications/warning-message.js' {
   declare module.exports: $Exports<'testcafe/lib/notifications/warning-message'>;
 }
+declare module 'testcafe/lib/reporter/command/command-formatter.js' {
+  declare module.exports: $Exports<'testcafe/lib/reporter/command/command-formatter'>;
+}
+declare module 'testcafe/lib/reporter/command/format-command.js' {
+  declare module.exports: $Exports<'testcafe/lib/reporter/command/format-command'>;
+}
+declare module 'testcafe/lib/reporter/command/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/reporter/command/interfaces'>;
+}
 declare module 'testcafe/lib/reporter/index' {
   declare module.exports: $Exports<'testcafe/lib/reporter'>;
 }
@@ -1577,6 +1732,12 @@ declare module 'testcafe/lib/runner/index' {
 declare module 'testcafe/lib/runner/index.js' {
   declare module.exports: $Exports<'testcafe/lib/runner'>;
 }
+declare module 'testcafe/lib/runner/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/runner/interfaces'>;
+}
+declare module 'testcafe/lib/runner/reporter-stream-controller.js' {
+  declare module.exports: $Exports<'testcafe/lib/runner/reporter-stream-controller'>;
+}
 declare module 'testcafe/lib/runner/task.js' {
   declare module.exports: $Exports<'testcafe/lib/runner/task'>;
 }
@@ -1604,11 +1765,41 @@ declare module 'testcafe/lib/screenshots/index.js' {
 declare module 'testcafe/lib/screenshots/utils.js' {
   declare module.exports: $Exports<'testcafe/lib/screenshots/utils'>;
 }
+declare module 'testcafe/lib/services/compiler/host.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/host'>;
+}
+declare module 'testcafe/lib/services/compiler/io.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/io'>;
+}
+declare module 'testcafe/lib/services/compiler/protocol.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/protocol'>;
+}
+declare module 'testcafe/lib/services/compiler/service.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/service'>;
+}
+declare module 'testcafe/lib/services/compiler/test-run-proxy.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/test-run-proxy'>;
+}
+declare module 'testcafe/lib/services/compiler/test-structure.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/compiler/test-structure'>;
+}
 declare module 'testcafe/lib/services/utils/ipc/interfaces.js' {
   declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/interfaces'>;
 }
+declare module 'testcafe/lib/services/utils/ipc/io.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/io'>;
+}
+declare module 'testcafe/lib/services/utils/ipc/message.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/message'>;
+}
+declare module 'testcafe/lib/services/utils/ipc/packet.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/packet'>;
+}
 declare module 'testcafe/lib/services/utils/ipc/proxy.js' {
   declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/proxy'>;
+}
+declare module 'testcafe/lib/services/utils/ipc/transport.js' {
+  declare module.exports: $Exports<'testcafe/lib/services/utils/ipc/transport'>;
 }
 declare module 'testcafe/lib/test-run/bookmark.js' {
   declare module.exports: $Exports<'testcafe/lib/test-run/bookmark'>;
@@ -1721,6 +1912,9 @@ declare module 'testcafe/lib/utils/delegated-api.js' {
 declare module 'testcafe/lib/utils/detect-ffmpeg.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/detect-ffmpeg'>;
 }
+declare module 'testcafe/lib/utils/diff.js' {
+  declare module.exports: $Exports<'testcafe/lib/utils/diff'>;
+}
 declare module 'testcafe/lib/utils/escape-user-agent.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/escape-user-agent'>;
 }
@@ -1729,6 +1923,9 @@ declare module 'testcafe/lib/utils/flag-list.js' {
 }
 declare module 'testcafe/lib/utils/get-any-key.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/get-any-key'>;
+}
+declare module 'testcafe/lib/utils/get-browser.js' {
+  declare module.exports: $Exports<'testcafe/lib/utils/get-browser'>;
 }
 declare module 'testcafe/lib/utils/get-common-path.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/get-common-path'>;
@@ -1793,6 +1990,9 @@ declare module 'testcafe/lib/utils/path-pattern.js' {
 declare module 'testcafe/lib/utils/prepare-reporters.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/prepare-reporters'>;
 }
+declare module 'testcafe/lib/utils/prerender-callsite.js' {
+  declare module.exports: $Exports<'testcafe/lib/utils/prerender-callsite'>;
+}
 declare module 'testcafe/lib/utils/process.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/process'>;
 }
@@ -1841,15 +2041,18 @@ declare module 'testcafe/lib/utils/thennable.js' {
 declare module 'testcafe/lib/utils/timer.js' {
   declare module.exports: $Exports<'testcafe/lib/utils/timer'>;
 }
-declare module 'testcafe/lib/video-recorder/index' {
-  declare module.exports: $Exports<'testcafe/lib/video-recorder'>;
-}
-declare module 'testcafe/lib/video-recorder/index.js' {
-  declare module.exports: $Exports<'testcafe/lib/video-recorder'>;
+declare module 'testcafe/lib/video-recorder/interfaces.js' {
+  declare module.exports: $Exports<'testcafe/lib/video-recorder/interfaces'>;
 }
 declare module 'testcafe/lib/video-recorder/process.js' {
   declare module.exports: $Exports<'testcafe/lib/video-recorder/process'>;
 }
+declare module 'testcafe/lib/video-recorder/recorder.js' {
+  declare module.exports: $Exports<'testcafe/lib/video-recorder/recorder'>;
+}
 declare module 'testcafe/lib/video-recorder/test-run-video-recorder.js' {
   declare module.exports: $Exports<'testcafe/lib/video-recorder/test-run-video-recorder'>;
+}
+declare module 'testcafe/lib/video-recorder/videos.js' {
+  declare module.exports: $Exports<'testcafe/lib/video-recorder/videos'>;
 }

@@ -41,8 +41,8 @@ class HomePage extends React.Component {
                 <img src={lessonIcon} alt="all lessons" />
               </div>
               <div className="col-sm-10">
-                <Link to="/tabView">
-                  <h2>All Lessons</h2>
+                <Link to="/AddLesson">
+                  <h2>Add New Lesson</h2>
                 </Link>
                 {/* <Popup
                   trigger={<h2>All Lessons</h2>}
@@ -62,8 +62,8 @@ class HomePage extends React.Component {
                 <img src={teachingIcon} alt="start teaching" />
               </div>
               <div className="col-sm-10">
-                <Link to="/lesson">
-                  <h2>Start Teaching</h2>
+                <Link to="/openLesson">
+                  <h2>All Lessons </h2>
                 </Link>
                 <h4>
                   Start a new teaching session. You can also start a self study

@@ -1,4 +1,4 @@
-// flow-typed signature: 8e9e090adcb866d788bd7ac615413fc5
+// flow-typed signature: 055e5ba96cbdeeab3e6e6ad134c8c790
 // flow-typed version: <<STUB>>/electron-log_v^4.0.0/flow_v0.113.0
 
 /**
@@ -35,6 +35,10 @@ declare module 'electron-log/src' {
 }
 
 declare module 'electron-log/src/log' {
+  declare module.exports: any;
+}
+
+declare module 'electron-log/src/scope' {
   declare module.exports: any;
 }
 
@@ -97,6 +101,9 @@ declare module 'electron-log/src/index.js' {
 }
 declare module 'electron-log/src/log.js' {
   declare module.exports: $Exports<'electron-log/src/log'>;
+}
+declare module 'electron-log/src/scope.js' {
+  declare module.exports: $Exports<'electron-log/src/scope'>;
 }
 declare module 'electron-log/src/transform/index' {
   declare module.exports: $Exports<'electron-log/src/transform'>;

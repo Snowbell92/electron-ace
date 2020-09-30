@@ -1,17 +1,28 @@
 import React, { Fragment } from 'react';
 import { Slide } from 'react-slideshow-image';
 import { connect } from 'react-redux';
+import { store } from '../../helpers/store';
 import { showLessonActions } from '../../actions/showLesson.actions';
+import ReactPlayer from 'react-player';
+import './showLesson.css';
+
 
 class ShowLesson extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+    lesson_name: this.props.location.state.name
+    }
+  }
   componentDidMount() {
     // eslint-disable-next-line react/prop-types,react/destructuring-assignment
-    this.props.dispatch(showLessonActions.fetchLesson('bird'));
+    this.props.dispatch(showLessonActions.fetchLesson(this.state.lesson_name));
   }
 
   properties = {
-    duration: 5000,
+    duration: 5000000,
     transitionDuration: 500,
+    infinite:false,
     indicators: true,
     arrows: true,
     onChange: (oldIndex, newIndex) => {
@@ -22,47 +33,83 @@ class ShowLesson extends React.Component {
   render() {
     // eslint-disable-next-line react/prop-types
     const { isLoading, isLoaded, lessonData } = this.props;
+    console.log(isLoading);
+    console.log(isLoaded);
     if (isLoading) {
-      return <div>Loading...</div>;
+      console.log('yess com');
+      return <div><h4>Loading...</h4></div>;
     }
+
+    let word=[];
+    let images=[];
+    let video=[];
+    let audio=[];
+    const path = require('path');
+
+    word = lessonData.data.wordName;
+    images=lessonData.data.slideImages;
+    lessonData.data.video&&lessonData.data.video.map((videoPath)=>
+    video.push(videoPath)
+     // video.push( URL.createObjectURL(new FileReader().readAsDataURL(videoPath)))
+    // video.push(path.relative(process.cwd(),videoPath))
+    );
+    audio=lessonData.data.audio;
+    let i;
     return (
       <>
-        console.log('comp');
-        console.log(this.props.isLoaded);
-        console.log(this.props.isLoading);
-        console.log(this.props.lessonData);
-        <div className="title-block">
-          <div className="container">
-            <div className="row">
-              {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-              <div className="col-sm-12">
-                {/* TODO: dynamic lesson numbers */}
-                <h3>Lesson 1</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+        {console.log('comp')}
+        {console.log(this.props.isLoaded)}
+        {console.log(this.props.isLoading)}
+        {console.log(video[0].path)}
         <div className="showLesson">
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                {/* eslint-disable-next-line react/prop-types */}
-                {/*<h3>{lessonData.wordName}</h3>*/}
                 <div className="slideshow">
                   <div className="slide-container">
-                    {/*<Slide {...this.properties}>*/}
-                      {/* eslint-disable-next-line react/prop-types */}
-                      {/*{lessonData.slideImages.map(slides => (
+                   <Slide {...this.properties}>
+                     {
+                        images ? images.map((slides,index) => (
+
                         <div className="each-slide">
-                          <div
-                            style={{
-                              // eslint-disable-next-line react/prop-types
-                              backgroundImage: `url(assets/images/${lessonData.wordName}/${slides})`
-                            }}
-                          />
+							            <div className="title-block-slideText">
+								            <div className="title-block">
+									            <div className="container">
+										            <div className="row">
+											            <div className="col-sm-12">
+												            <h3>{word[index]}</h3>
+											            </div>
+										            </div>
+									            </div>
+								            </div>
+							            </div>
+
+                             <div className="bcg"
+                              style={{
+                                // eslint-disable-next-line react/prop-types
+                                backgroundImage: `url(assets/images/${word[index]}/${slides})`
+                              }}
+                             />
+
                         </div>
-                      ))}*/}
-                    {/*</Slide>*/}
+                         )) : "loading ....."
+
+                      }
+                        {
+                         video && video.map( (videoPath,index) =>(
+                          <div className ='player-wrapper' >
+                              <ReactPlayer
+                               className='react-player fixed-bottom'
+                               url= {`assets/videos/${word[index]}/_${index}.mp4`}
+                               playing={true}
+                               width='100%'
+                               height='100%'
+                               controls = {true} />
+                          </div>
+                          ))
+                         }
+
+                    </Slide>
                   </div>
                 </div>
               </div>
@@ -74,10 +121,13 @@ class ShowLesson extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.lessonData.isLoading,
-  isLoaded: state.lessonData.isLoaded,
-  lessonData: state.lessonData
-});
+function mapStateToProps (state){
+
+  return {
+    isLoading: state.lessonData.isLoading,
+    isLoaded: state.lessonData.isLoaded,
+    lessonData: state.lessonData
+  }
+}
 
 export default connect(mapStateToProps)(ShowLesson);

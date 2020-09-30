@@ -1,4 +1,4 @@
-// flow-typed signature: 3bdb809d99be5d2a7b76324fa6683dba
+// flow-typed signature: 9f4d0882e617cec1cc130d7d9a27f17f
 // flow-typed version: <<STUB>>/electron-rebuild_v^1.8.8/flow_v0.113.0
 
 /**
@@ -50,6 +50,10 @@ declare module 'electron-rebuild/lib/src/rebuild' {
   declare module.exports: any;
 }
 
+declare module 'electron-rebuild/lib/src/search-module' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module 'electron-rebuild/lib/src/cache.js' {
   declare module.exports: $Exports<'electron-rebuild/lib/src/cache'>;
@@ -71,4 +75,7 @@ declare module 'electron-rebuild/lib/src/read-package-json.js' {
 }
 declare module 'electron-rebuild/lib/src/rebuild.js' {
   declare module.exports: $Exports<'electron-rebuild/lib/src/rebuild'>;
+}
+declare module 'electron-rebuild/lib/src/search-module.js' {
+  declare module.exports: $Exports<'electron-rebuild/lib/src/search-module'>;
 }

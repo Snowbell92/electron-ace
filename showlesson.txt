@@ -1,0 +1,11 @@
+
+                         video && video.map( (videoPath) =>(
+                          <div className ='player-wrapper' >
+                            <ReactPlayer
+                          className='react-player fixed-bottom'
+                          url= {videoPath}
+                          width='100%'
+                          height='100%'
+                          controls = {true} />
+                          </div>
+                         ))

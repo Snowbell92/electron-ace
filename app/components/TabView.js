@@ -29,7 +29,7 @@ class TabView extends Component {
         activeTabClassName="active"
       >
 
-          <NavTab className='navBarLink' to="/showLesson">Open Lesson </NavTab>
+          <NavTab className='navBarLink' to="/openLesson">Open Lesson </NavTab>
           <NavTab className='navBarLink' to="/AddLesson">Add New Lesson </NavTab>
           <NavTab className='navBarLink' to="/addLessonElement">Add Lesson Element  </NavTab>
 

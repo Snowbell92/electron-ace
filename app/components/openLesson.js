@@ -22,7 +22,8 @@ class openLessonComponent extends Component {
   constructor() {
     super();
     this.state = {
-      lesson : ''
+      lesson : [] ,
+      retrieveLesson : false
    };
 
    this.retrieveInfo = this.retrieveInfo.bind(this);
@@ -33,135 +34,82 @@ class openLessonComponent extends Component {
   // eslint-disable-next-line class-methods-use-this
   retrieveInfo(){
 
-    return new Promise((resolve, reject) => {
+     new Promise((resolve, reject) => {
       ipc.send( 'FIND_ALL_LESSON' );
 
       ipc.on('ALL_LESSON_FETCHED', (event, result) => {
         if (result.text !== 'success') {
           // eslint-disable-next-line no-shadow
           const error = result.message;
-          reject(error);
+           reject(error);
         }
          resolve(result);
       });
     })
     .then(info =>{
-      return info.lessons ;
+      this.setState({lesson : info.lessons});
+      this.setState({retrieveLesson : true});
     }).catch(message=>{
-       return message;
+       console.log(message);
     });
 
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async setLesson(){
-    const lName =await this. retrieveInfo();
+   async setLesson(){
+    await this. retrieveInfo();
 
-    // eslint-disable-next-line array-callback-return
-   /*  lName.map(item => {
+   /* return lName.then(message => {
+		return  message;
 
-      console.log(item);
-    });
-
-    then(message => {
-
-      return  message.lessons;
-
-    }) ;
-
-    */
-
-   console.log(lName);
-
-  // return this.lName.map(name => <div className="text-center"><Link to="play"><h3>{name}</h3></Link></div>);
+    }) ; */
   }
+
+
+
+  // console.log(lName);
+  // console.log(typeof(lName));
+  // console.log(Array.isArray(lName));
+
+ //  return lName;
+ // }
 
   render() {
     const headers = ['Open Lesson', 'Add New Lesson', 'Add Lesson Element'];
     // eslint-disable-next-line no-undef
-   this.setLesson();
+	//let allLesson=[];
+   // allLesson = this.setLesson();
+   if(this.state.retrieveLesson==false){
+    this.setLesson();
+   }
+   console.log('yesss we can');
+   console.log(this.state.retrieveLesson);
+   console.log(this.state.lesson);
     return (
-      <div className="left">
-        <h>open Lesson section</h>
-     </div>
+      <>
+        <div className="left">
+        {
+          this.state.lesson.map((lessonList)=>(
+            <div className="related_links">
+              <li> <Link
+              to={{
+                pathname: '/showLesson',
+                state: {
+                  name: lessonList.name
+                }
+              }}
+              className="btn btn-link"
+            >
+             { lessonList.name }
+            </Link></li>
+            </div>
+          ))
+        }
+        </div>
+     </>
     );
   }
 }
-
-/*
-function mapState(state) {
-  const { fetchLesson } = state.editForm;
-  return { fetchLesson };
-}
-
-const actionCreators = {
-  fetchLesson: null
-};
-
-const connectedElementForm = connect(
-  mapState,
-  actionCreators
-)(openLessonComponent);
-
-// eslint-disable-next-line import/prefer-default-export
-export { connectedElementForm as openLessonPage };
-
-*/
 
 
 export default openLessonComponent;
-
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
-/*
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import { openLessonAction } from '../actions/openLesson.action';
-
-class openLessonComponent extends React.component {
-  constructor(props) {
-    super(props);
-    this.handleAllLesson = this.handleAllLesson.bind(this);
-  }
-
-  // eslint-disable-next-line camelcase
-  L_name = [];
-
-  // eslint-disable-next-line camelcase
-  L_thumbnail = [];
-
-  handleAllLesson(event) {
-    event.preventDefault();
-    const LessonInfo = this.props.fetchLesson();
-    console.log(LessonInfo);
-  }
-
-  render() {
-    return (
-      // eslint-disable-next-line react/jsx-no-comment-textnodes
-      <>
-        // eslint-disable-next-line react/button-has-type
-        <button onClick={this.handleAllLesson}>Refresh</button>
-      </>
-    );
-  }
-}
-
-function mapState(state) {
-  const { fetchLesson } = state.editForm;
-  return { fetchLesson };
-}
-
-const actionCreators = {
-  fetchLesson: openLessonAction.fetchLesson
-};
-
-const connectedElementForm = connect(
-  mapState,
-  actionCreators
-)(openLessonComponent);
-
-// eslint-disable-next-line import/prefer-default-export
-export { connectedElementForm as openLessonPage }; */

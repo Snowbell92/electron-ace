@@ -1,4 +1,4 @@
-// flow-typed signature: 88a51fd54c07feead63e55fd3191576e
+// flow-typed signature: 84868ac008d58c772f0224a573ff0f6d
 // flow-typed version: <<STUB>>/mini-css-extract-plugin_v^0.8.0/flow_v0.113.0
 
 /**
@@ -26,6 +26,10 @@ declare module 'mini-css-extract-plugin/dist/cjs' {
   declare module.exports: any;
 }
 
+declare module 'mini-css-extract-plugin/dist/CssDependency' {
+  declare module.exports: any;
+}
+
 declare module 'mini-css-extract-plugin/dist/hmr/hotModuleReplacement' {
   declare module.exports: any;
 }
@@ -41,6 +45,9 @@ declare module 'mini-css-extract-plugin/dist/loader' {
 // Filename aliases
 declare module 'mini-css-extract-plugin/dist/cjs.js' {
   declare module.exports: $Exports<'mini-css-extract-plugin/dist/cjs'>;
+}
+declare module 'mini-css-extract-plugin/dist/CssDependency.js' {
+  declare module.exports: $Exports<'mini-css-extract-plugin/dist/CssDependency'>;
 }
 declare module 'mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js' {
   declare module.exports: $Exports<'mini-css-extract-plugin/dist/hmr/hotModuleReplacement'>;

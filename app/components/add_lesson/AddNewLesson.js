@@ -17,7 +17,7 @@ class AddLesson extends React.Component {
     this.state = {
       name: '',
       // eslint-disable-next-line react/no-unused-state
-      thumbnail: [null],
+      thumbnail: [],
       thumbnailPath: '',
       submitted: false,
       errors: {},
@@ -46,7 +46,8 @@ class AddLesson extends React.Component {
 
     const lesson = {
       name: '' || this.state.name,
-      thumbnail: this.state.thumbnailPath
+      thumbnail: this.state.thumbnailPath,
+      thumbnailFile: this.state.thumbnail
     };
     this.setState({ pending: true });
     // eslint-disable-next-line eqeqeq
@@ -95,16 +96,14 @@ class AddLesson extends React.Component {
       })
     ).then(
       // eslint-disable-next-line promise/always-return
-      thumbnail => {
+      images => {
         // eslint-disable-next-line promise/always-return
-        const string = thumbnail.toString().split(';base64,')[0];
+        const string = images.toString().split(';base64,')[0];
         console.log(string);
-        this.fileArray.push(thumbnail);
+        this.fileArray.push(images);
         /* Once all promises are resolved, update state with image URI array */
-        // eslint-disable-next-line func-names
-        this.setState({ thumbnailPath: string });
         this.setState({ thumbnail: this.fileArray }, function() {
-          console.log(this.state.thumbnail[0]);
+          console.log(this.state.thumbnail);
         });
       },
       // eslint-disable-next-line no-shadow

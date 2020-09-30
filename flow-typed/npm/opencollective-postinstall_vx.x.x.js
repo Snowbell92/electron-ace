@@ -1,4 +1,4 @@
-// flow-typed signature: a1689571944e9cba123b79833ab44dff
+// flow-typed signature: fb7785b0f4b3a7dc9912b4555edda855
 // flow-typed version: <<STUB>>/opencollective-postinstall_v^2.0.2/flow_v0.113.0
 
 /**
@@ -22,9 +22,7 @@ declare module 'opencollective-postinstall' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'opencollective-postinstall/index.test' {
-  declare module.exports: any;
-}
+
 
 // Filename aliases
 declare module 'opencollective-postinstall/index' {
@@ -32,7 +30,4 @@ declare module 'opencollective-postinstall/index' {
 }
 declare module 'opencollective-postinstall/index.js' {
   declare module.exports: $Exports<'opencollective-postinstall'>;
-}
-declare module 'opencollective-postinstall/index.test.js' {
-  declare module.exports: $Exports<'opencollective-postinstall/index.test'>;
 }

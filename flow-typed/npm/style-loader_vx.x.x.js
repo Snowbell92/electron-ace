@@ -1,4 +1,4 @@
-// flow-typed signature: 7839e5d6f6765c0f0953f74a34c47b2b
+// flow-typed signature: 114b26d3e7cd32382edbe8e1ca306de7
 // flow-typed version: <<STUB>>/style-loader_v^1.0.1/flow_v0.113.0
 
 /**
@@ -22,6 +22,10 @@ declare module 'style-loader' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module 'style-loader/dist/cjs' {
+  declare module.exports: any;
+}
+
 declare module 'style-loader/dist' {
   declare module.exports: any;
 }
@@ -34,7 +38,14 @@ declare module 'style-loader/dist/runtime/injectStylesIntoStyleTag' {
   declare module.exports: any;
 }
 
+declare module 'style-loader/dist/runtime/isEqualLocals' {
+  declare module.exports: any;
+}
+
 // Filename aliases
+declare module 'style-loader/dist/cjs.js' {
+  declare module.exports: $Exports<'style-loader/dist/cjs'>;
+}
 declare module 'style-loader/dist/index' {
   declare module.exports: $Exports<'style-loader/dist'>;
 }
@@ -46,4 +57,7 @@ declare module 'style-loader/dist/runtime/injectStylesIntoLinkTag.js' {
 }
 declare module 'style-loader/dist/runtime/injectStylesIntoStyleTag.js' {
   declare module.exports: $Exports<'style-loader/dist/runtime/injectStylesIntoStyleTag'>;
+}
+declare module 'style-loader/dist/runtime/isEqualLocals.js' {
+  declare module.exports: $Exports<'style-loader/dist/runtime/isEqualLocals'>;
 }

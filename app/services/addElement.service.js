@@ -7,7 +7,7 @@ export const addElementService = {
 
 function addElement(element) {
   console.log('in service');
-  console.log(element);
+  console.log(element.video);
 
   return new Promise((resolve, reject) => {
     // will send the element object here.
