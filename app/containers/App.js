@@ -17,6 +17,9 @@ import ShowLesson from '../components/teaching_components/showLesson';
 import TabView from '../components/TabView';
 import AddNoun from '../components/add_lesson/AddNoun';
 import openLessonComponent from '../components/openLesson';
+import puzzle from '../components/puzzle/Puzzle';
+import QuizChoiceComponent from '../components/MCQ/quizChoiceComponent';
+import EditLesson from '../components/lesson_components/EditLessonElement';
 // eslint-disable-next-line no-unused-vars
 
 class App extends React.Component {
@@ -46,12 +49,14 @@ class App extends React.Component {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/tabView" component={TabView} />
-
-            <Route path="/AddLesson" component={AddLessonPage} />
+            <Route path="/quiz" component={QuizChoiceComponent}/>
+            <Route path="/addLesson" component={AddLessonPage} />
             <Route path="/addLessonElement" component={AddLessonElement} />
             <Route path="/AddNoun" component={AddNoun} />
+            <Route path="/editLesson" component={EditLesson}/>
             <Route path="/openLesson" component={openLessonComponent} />
             <Route path="/showLesson" component={ShowLesson} />
+            <Route path="/puzzle" component={puzzle} />
             <Redirect from="*" to="/" />
           </Switch>
         </Router>

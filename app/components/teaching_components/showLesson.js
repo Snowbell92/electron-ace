@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import { Slide } from 'react-slideshow-image';
 import { connect } from 'react-redux';
 import { store } from '../../helpers/store';
+import { Link } from 'react-router-dom';
 import { showLessonActions } from '../../actions/showLesson.actions';
 import ReactPlayer from 'react-player';
 import './showLesson.css';
+import Icon from './complete.png';
 
 
 class ShowLesson extends React.Component {
@@ -44,7 +46,7 @@ class ShowLesson extends React.Component {
     let images=[];
     let video=[];
     let audio=[];
-    const path = require('path');
+   // const path = require('path');
 
     word = lessonData.data.wordName;
     images=lessonData.data.slideImages;
@@ -60,7 +62,7 @@ class ShowLesson extends React.Component {
         {console.log('comp')}
         {console.log(this.props.isLoaded)}
         {console.log(this.props.isLoading)}
-        {console.log(video[0].path)}
+
         <div className="showLesson">
           <div className="container">
             <div className="row">
@@ -109,7 +111,30 @@ class ShowLesson extends React.Component {
                           ))
                          }
 
+
+                       <div>
+                            <div className="row">
+                               <div className="col-sm-2">
+                                  <img src={Icon} alt="complete" />
+                                </div>
+                            </div>
+
+                                  <h4>
+                                    you complete your lesson .
+                                    Click Next .....
+                                  </h4>
+
+
+
+                          </div>
+
+
                     </Slide>
+                    <div>
+                    <Link className="btn btn-primary" to="/quiz">
+                      Next
+                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>

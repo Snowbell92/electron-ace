@@ -41,7 +41,7 @@ class HomePage extends React.Component {
                 <img src={lessonIcon} alt="all lessons" />
               </div>
               <div className="col-sm-10">
-                <Link to="/AddLesson">
+                <Link to="/editLesson">
                   <h2>Add New Lesson</h2>
                 </Link>
                 {/* <Popup

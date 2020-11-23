@@ -1860,8 +1860,12 @@ var StmtRawGen = {
             $body      = $stmt.body,
             prevIndent = shiftIndent();
 
-        _.js += 'catch' + _.optSpace + '(';
-        ExprGen[$param.type]($param, Preset.e5);
+        _.js += 'catch' + _.optSpace;
+        
+        if ($param) {
+           _.js += '(';
+           ExprGen[$param.type]($param, Preset.e5);
+        }
 
         if ($guard) {
             _.js += ' if ';
@@ -1869,7 +1873,11 @@ var StmtRawGen = {
         }
 
         _.indent = prevIndent;
-        _.js += ')' + adoptionPrefix($body);
+        if ($param) {
+           _.js += ')';
+        } 
+     
+        _.js += adoptionPrefix($body);
         StmtGen[$body.type]($body, Preset.s7);
     },
 

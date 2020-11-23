@@ -429,11 +429,38 @@ app.on('ready', async () => {
 
   });
 
+  ipcMain.on('ALL_LESSON', (event) => {
+
+    return new Promise((resolve, reject) => {
+      db.lesson
+        .findAll({ raw:true })
+        .then(lessonData =>  {
+          resolve(lessonData);
+          // console.log(lessonData);
+          return event.sender.send('ALL_LESSON_FETCHED', {
+            text: 'success',
+            message: 'lesson found',
+            // lessons:result
+            lessons : lessonData
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+          return event.sender.send('LESSON_NOT_FOUND', {
+            text: 'failed',
+            message: 'Not Found'
+          });
+        });
+    });
+  });
+
+
   // eslint-disable-next-line no-unused-vars
   ipcMain.on('FIND_ALL_LESSON', (event) => {
 
     return new Promise((resolve, reject) => {
-      db.lesson
+      db.lesson_elements
         .findAll({ raw:true })
         .then(lessonData =>  {
           resolve(lessonData);
@@ -466,7 +493,7 @@ app.on('ready', async () => {
       db.lesson_elements
       .findAll({
          where: {
-              lesson_name: lessonName
+              word: lessonName
             }
           }).then(info => {
               return JSON.stringify(info);

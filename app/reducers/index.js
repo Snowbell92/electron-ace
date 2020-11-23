@@ -6,6 +6,7 @@ import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 import editForm from './editForm.reducer';
 import lessonData from './lesson.reducer';
+import alLessonName from './alLesson.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   users,
   alert,
   editForm,
-  lessonData
+  lessonData,
+  alLessonName
 });
 
 export default rootReducer;

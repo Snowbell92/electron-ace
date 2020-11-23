@@ -12,6 +12,8 @@ import ReactDOM from 'react-dom';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { RoutedTabs, NavTab } from "react-router-tabs";
 import { Component } from 'react';
+import { lesson } from '../../db/db';
+
 
 
 const ipc = require('electron').ipcRenderer;
@@ -19,16 +21,20 @@ const db = require('../../db/db');
 
 class openLessonComponent extends Component {
 
+
+
   constructor() {
     super();
     this.state = {
       lesson : [] ,
-      retrieveLesson : false
+      retrieveLesson : false,
+      retrieveWord : false,
+      word:[],
+      type:[]
    };
 
    this.retrieveInfo = this.retrieveInfo.bind(this);
    this.setLesson = this.setLesson.bind(this);
-
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -58,6 +64,7 @@ class openLessonComponent extends Component {
   // eslint-disable-next-line class-methods-use-this
    async setLesson(){
     await this. retrieveInfo();
+    // await this.setWord();
 
    /* return lName.then(message => {
 		return  message;
@@ -65,7 +72,16 @@ class openLessonComponent extends Component {
     }) ; */
   }
 
-
+ /* to={{
+  pathname: '/showLesson',
+  state: {
+    name: lessonList.name
+  }
+}} */
+/* {this.setWord(lessonList.lesson_name)}
+             {this.state.word.map((wdInfo,index)=>(
+              <li>{wdInfo}</li>
+             ))}*/
 
   // console.log(lName);
   // console.log(typeof(lName));
@@ -82,28 +98,33 @@ class openLessonComponent extends Component {
    if(this.state.retrieveLesson==false){
     this.setLesson();
    }
+ //  this.setWord('bird');
    console.log('yesss we can');
    console.log(this.state.retrieveLesson);
-   console.log(this.state.lesson);
     return (
       <>
         <div className="left">
         {
-          this.state.lesson.map((lessonList)=>(
-            <div className="related_links">
-              <li> <Link
-              to={{
-                pathname: '/showLesson',
-                state: {
-                  name: lessonList.name
-                }
-              }}
-              className="btn btn-link"
-            >
-             { lessonList.name }
-            </Link></li>
-            </div>
-          ))
+          <div >
+            {this.state.lesson.map((lessonList)=>(
+              <div className="related_links">
+                <li >
+                  <Link  className="btn btn-link"
+                  to={{
+                    pathname: '/showLesson',
+                    state: {
+                      name: lessonList.word
+                    }}}>
+               { lessonList.word}
+               {'                         Lesson Category:'}
+               { lessonList.word_category}
+               {'                         Lesson Name:'}
+               {lessonList.lesson_name}
+
+              </Link></li>
+              </div>
+            ))}
+          </div>
         }
         </div>
      </>
@@ -113,3 +134,6 @@ class openLessonComponent extends Component {
 
 
 export default openLessonComponent;
+
+
+

@@ -233,22 +233,13 @@ class AddLessonElement extends React.Component {
                     inputContainerClassName="col-sm-10"
                   />
 
-
-
-
-                    <PreviewInput
+                  <PreviewInput
                     name="files"
                     label="Picture"
                     onChange={this.uploadMultipleFiles}
                     files={this.fileArray}
                     error={errors.fileError}
                   />
-
-
-                {/*<label>Picture</label> */}
-
-
-
 
                   <PreviewInput
                     name="audio"
